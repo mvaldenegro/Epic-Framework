@@ -12,3 +12,4 @@ Coding standards for the Epic Framework
 - Don't use exceptions.
 - Always pass/return reference-counted or ownership-based smart pointer (Pointer<T> or SharedPointer<T>).
 - Always document classes and methods with doxygen-style comments.
+- Follow the Rule of Three: If you define one of the following, define them all. Destructor, Copy Constructor and Copy Assignment Operator.
