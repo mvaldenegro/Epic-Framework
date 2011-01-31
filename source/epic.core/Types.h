@@ -8,6 +8,8 @@
 #ifndef EPIC_CORE_TYPES_H
 #define	EPIC_CORE_TYPES_H
 
+#include <stdlib.h>
+
 namespace Epic {
     namespace Core {
 
@@ -22,6 +24,7 @@ namespace Epic {
 
         typedef unsigned long long UInt64;
         typedef signed long long Int64;
+        
 
     };
 };
