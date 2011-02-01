@@ -47,6 +47,7 @@ namespace Epic {
                  * Constructs a shared pointer, initializing it with a raw pointer.
                  * This smart pointer takes ownership of the raw pointer.
                  */
+                
                 SharedPointer(T *ptr) : sharedData(new InternalSharedData(ptr))
                 {
                 }
@@ -102,7 +103,7 @@ namespace Epic {
 
                 inline T& operator*()
                 {
-                    return *(this->sharedData);
+                    return *(this->sharedData.pointer);
                 }
 
                 /*! Dereference operator.
@@ -112,7 +113,22 @@ namespace Epic {
                 
                 inline const T& operator*() const
                 {
-                    return *(this->sharedData);
+                    return *(this->sharedData->pointer);
+                }
+
+                /*! Arrow operator.
+                 * 
+                 * This operator implements pointer semantics, allows the usage of SharedPointer as any raw pointer.
+                 */
+
+                inline T* operator->()
+                {
+                    return this->sharedData->pointer;
+                }
+
+                inline const T* operator->() const
+                {
+                    return this->sharedData->pointer;
                 }
 
                 /*! Returns true if this pointer is null, false otherwise.
@@ -128,7 +144,7 @@ namespace Epic {
 
                 inline bool isNotNull() const
                 {
-                    return (this->sharedData != nullptr) && (this->sharedData.pointer != nullptr);
+                    return (this->sharedData != nullptr) && (this->sharedData->pointer != nullptr);
                 }
 
                 /*! Attach operation.
@@ -160,7 +176,7 @@ namespace Epic {
                         detach();
 
                         this->sharedData = other.sharedData;
-                        this->sharedData.referenceCount++;
+                        this->sharedData->referenceCount++;
                     }
                 }
 
@@ -173,9 +189,9 @@ namespace Epic {
                 {
                     if(this->sharedData != nullptr) {
 
-                        this->sharedData.referenceCount--;
+                        this->sharedData->referenceCount--;
 
-                        if(this->sharedData.referenceCount == 0) {
+                        if(this->sharedData->referenceCount == 0) {
                             delete this->sharedData;
 
                             this->sharedData = nullptr;
