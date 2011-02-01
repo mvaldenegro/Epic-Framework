@@ -10,22 +10,7 @@
 
 #define EPIC_CORE_COMPILER_DOESNT_SUPPORT_NULLPTR
 #ifdef EPIC_CORE_COMPILER_DOESNT_SUPPORT_NULLPTR
-const class {
-    public:
-        template<class T>
-        operator T*() const
-        {
-            return 0;
-        }
-
-        template<class C, class T>
-        operator T C::*() const
-        {
-            return 0;
-        }
-    private:
-        void operator&() const;
-} nullptr = {};
+#define nullptr 0
 #endif
 
 #endif	/* EPIC_CORE_COMPILER_H */
