@@ -198,6 +198,11 @@ namespace Epic {
                         }
                     }
                 }
+
+                int referenceCount()
+                {
+                    return this->sharedData->referenceCount;
+                }
         };
     }
 }

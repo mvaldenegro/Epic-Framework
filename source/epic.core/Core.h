@@ -15,14 +15,6 @@
 #include <epic.core/Types.h>
 #include <epic.core/Assert.h>
 
-namespace Epic {
-    namespace Core {
-        inline void nothing()
-        {
-            /* Yes, nothing :) */
-        }
-    };
-};
 
 #endif	/* EPIC_CORE_H */
 

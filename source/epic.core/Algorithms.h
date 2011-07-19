@@ -9,7 +9,6 @@
 #define	ALGORITHMS_H
 
 #include <epic.core/Core.h>
-#include <epic.core/Array.h>
 
 namespace Epic {
     namespace Core {
@@ -46,7 +45,7 @@ namespace Epic {
         {
             Array<T> ret;
 
-            for(int i = 0; i < input.size(); i++) {
+            for(int i = 0; i < input.count(); i++) {
                 ret[i] f(input[i]);
             }
 

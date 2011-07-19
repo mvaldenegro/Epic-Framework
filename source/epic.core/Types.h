@@ -8,7 +8,7 @@
 #ifndef EPIC_CORE_TYPES_H
 #define	EPIC_CORE_TYPES_H
 
-#include <stdlib.h>
+#include <cstring>
 
 namespace Epic {
     namespace Core {

@@ -12,8 +12,13 @@
 
 namespace Epic {
     namespace Core {
-        inline void assert(const char *conditionText, const char *file, int line)
+        inline void EPIC_NO_RETURN assert(const char *conditionText, const char *file, int line)
         {
+        }
+
+        inline void nothing()
+        {
+            /* Yes, nothing :) */
         }
     };
 };

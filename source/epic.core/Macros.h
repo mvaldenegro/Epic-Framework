@@ -19,5 +19,7 @@
 #define EPIC_DEPRECATED                     __attribute__ ((deprecated))
 #define EPIC_DEPRECATED_MESSAGE(msg)        __attribute__ ((deprecated(msg)))
 
+#define EPIC_NO_RETURN                      __attribute__((__noreturn__))
+
 #endif	/* EPIC_CORE_MACROS_H */
 
