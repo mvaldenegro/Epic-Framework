@@ -12,8 +12,6 @@
 #include <epic.math/Vector3.h>
 #include <epic.math/Vector4.h>
 
-#include <epic.math/Math.h>
-
 namespace Epic {
     namespace Math {
         template<typename T>
