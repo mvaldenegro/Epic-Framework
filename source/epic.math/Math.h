@@ -8,7 +8,7 @@
 #ifndef EPIC_MATH_MATH_H
 #define	EPIC_MATH_MATH_H
 
-#include <cmath.h>
+#include <cmath>
 
 namespace Epic {
     namespace Math {
@@ -65,6 +65,22 @@ namespace Epic {
         T linearInterpolation(T weight, T a, T b)
         {
             return a * weight + (1.0 - weight) * b;
+        }
+
+        template<typename T>
+        bool fuzzyEquals(T a, T b, T epsilon)
+        {
+            return absoluteValue(a - b) < epsilon;
+        }
+
+        bool fuzzyEquals(float a, float b)
+        {
+            return fuzzyEquals(a, b, 0.001f);
+        }
+
+        bool fuzzyEquals(double a, double b)
+        {
+            return fuzzyEquals(a, b, 0.00001);
         }
     };
 };
