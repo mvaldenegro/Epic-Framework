@@ -12,10 +12,20 @@
 
 namespace Epic {
     namespace Image {
+
+        /*! 16-bit per pixel RG image.
+         */
         class RG8Image : public Image
         {
             public:
+                /*! Constructor.
+                 *
+                 * Constructs a image given the width and height.
+                 */
                 RG8Image(size_t width, size_t height);
+
+                /*! Destructor.
+                 */
                 ~RG8Image();
 
                 size_t bytesPerPixel() const;

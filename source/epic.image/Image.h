@@ -14,6 +14,9 @@
 
 namespace Epic {
     namespace Image {
+
+        /*! Base class for Image representations.
+         */
         class Image
         {
             private:
@@ -22,66 +25,93 @@ namespace Epic {
                 Epic::Core::Byte *imagePixelData;
 
             public:
-                Image(size_t width, size_t height, PixelFormat format);
-                Image(const Image& image);
 
+                /*! Constructor.
+                 *
+                 * Constructs a image given  the width, height and format.
+                 */
+                Image(size_t width, size_t height, PixelFormat format);
+
+                /*! Destructor.
+                 */
                 virtual ~Image();
 
-                inline size_t width() const
+                /*! Width of this image.
+                 */
+                EPIC_INLINE size_t width() const
                 {
                     return imageWidth;
                 }
 
-                inline void setWidth(size_t width)
-                {
-                    imageWidth = width;
-                }
-
-                inline size_t height() const
+                /*! Height of this image.
+                 */
+                EPIC_INLINE size_t height() const
                 {
                     return imageHeight;
                 }
 
-                inline void setHeight(size_t height)
-                {
-                    imageHeight = height;
-                }
-
-                inline PixelFormat format() const
+                /*! Pixel format of this image.
+                 */
+                EPIC_INLINE PixelFormat format() const
                 {
                     return imageFormat;
                 }
 
-                inline Epic::Core::Byte *pixelData()
+                /*! Byte pointer to the pixel data of this image.
+                 */
+                EPIC_INLINE Epic::Core::Byte *pixelData()
                 {
                     return imagePixelData;
                 }
 
-                inline const Epic::Core::Byte *pixelData() const
+                /*! Constant byte pointer to the pixel data of this image.
+                 */
+                EPIC_INLINE const Epic::Core::Byte *pixelData() const
                 {
                     return imagePixelData;
                 }
 
-                inline size_t pixelDataSize() const
+                /*! Size in bytes of the pixel data in this image.
+                 */
+                EPIC_INLINE size_t pixelDataSize() const
                 {
                     return width() * height() * bytesPerPixel();
                 }
 
+                /*! Size in bytes of a image pixel.
+                 */
                 virtual size_t bytesPerPixel() const = 0;
 
+                /*! Returns the pixel indexed by row and column.
+                 */
                 virtual Pixel pixel(size_t row, size_t column) const = 0;
+
+                /*! Sets the pixel indexed by row and column.
+                 */
                 virtual void setPixel(size_t row, size_t column, const Pixel& pixel) = 0;
 
+                /*! Returns a new instance of this image, converted to the given pixel format.
+                 */
                 Image *converted(PixelFormat format) const;
+
+                /*! Creates an appropiate subclass of Image, according to the pixel format, and returns it.
+                 */
                 static Image *createFromFormat(size_t width, size_t height, PixelFormat format);
 
             protected:
-                inline void setPixelData(Epic::Core::Byte *pixelData)
+
+                /*! Sets the image pixel data.
+                 */
+                EPIC_INLINE void setPixelData(Epic::Core::Byte *pixelData)
                 {
                     imagePixelData = pixelData;
                 }
 
-                inline size_t index(size_t row, size_t column) const
+                /*! Returns an appropiate linear index from a 2D row-column index, used to index the image pixel data.
+                 *
+                 * The performed calculation is bytesPerPixel() * (row * width + column).
+                 */
+                EPIC_INLINE size_t index(size_t row, size_t column) const
                 {
                     return bytesPerPixel() * (row * width() + column);
                 }

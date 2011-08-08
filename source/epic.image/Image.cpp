@@ -16,11 +16,6 @@ namespace Image {
     {
     }
 
-    Image::Image(const Image& image)
-    : imageWidth(image.width()), imageHeight(image.height()), imageFormat(image.format())
-    {
-    }
-
     Image::~Image()
     {
     }

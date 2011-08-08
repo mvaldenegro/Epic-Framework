@@ -12,10 +12,20 @@
 
 namespace Epic {
     namespace Image {
+
+        /*! 32-bit per pixel RGBA image.
+         */
         class RGBA8Image : public Image
         {
             public:
+                /*! Constructor.
+                 *
+                 * Constructs a image given the width and height.
+                 */
                 RGBA8Image(size_t width, size_t height);
+
+                /*! Destructor.
+                 */
                 ~RGBA8Image();
 
                 size_t bytesPerPixel() const;
