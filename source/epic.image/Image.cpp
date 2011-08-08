@@ -7,6 +7,9 @@
 
 #include "Image.h"
 #include "RGBA8Image.h"
+#include "RGB8Image.h"
+#include "RG8Image.h"
+#include "R8Image.h"
 
 namespace Epic {
 namespace Image {
@@ -38,6 +41,18 @@ namespace Image {
         switch(format) {
             case PixelFormat::RGBA8: {
                 return new RGBA8Image(width, height);
+            }
+
+            case PixelFormat::RGB8: {
+                return new RGB8Image(width, height);
+            }
+
+            case PixelFormat::RG8: {
+                return new RG8Image(width, height);
+            }
+
+            case PixelFormat::R8: {
+                return new R8Image(width, height);
             }
 
             default: {
