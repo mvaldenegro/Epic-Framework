@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Types.h
  * Author: hunts
  *
@@ -24,10 +24,10 @@ namespace Epic {
 
         typedef unsigned long long UInt64;
         typedef signed long long Int64;
-        
 
-    };
-};
+
+    }
+}
 
 #endif	/* EPIC_CORE_TYPES_H */
 

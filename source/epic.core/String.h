@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   String.h
  * Author: hunts
  *
@@ -18,8 +18,8 @@ namespace Epic {
             private:
 
         };
-    };
-};
+    }
+}
 
 
 #endif	/* EPIC_CORE_STRING_H */

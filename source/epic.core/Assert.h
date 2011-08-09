@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Assert.h
  * Author: hunts
  *
@@ -20,8 +20,8 @@ namespace Epic {
         {
             /* Yes, nothing :) */
         }
-    };
-};
+    }
+}
 
 #define EPIC_HARD_ASSERT(condition) \
     ((!(condition)) ? Epic::Core::assert(#condition, __FILE__, __LINE__) : Epic::Core::nothing())
