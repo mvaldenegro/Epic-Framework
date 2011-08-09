@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   MapReduce.h
  * Author: mvaldenegro
  *
@@ -19,7 +19,7 @@ namespace Epic {
             Array<T> ret;
 
             for(int i = 0; i < input.count(); i++) {
-                ret[i] f(input[i]);
+                ret << f(input[i]);
             }
 
             return ret;
