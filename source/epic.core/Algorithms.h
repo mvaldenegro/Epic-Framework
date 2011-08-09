@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Algorithms.h
  * Author: hunts
  *
@@ -38,18 +38,6 @@ namespace Epic {
             for(size_t i = 0; i < size; i++) {
                 destiny[i] = constData;
             }
-        }
-
-        template<typename T, typename Function>
-        Array<T> map(const Array<T>& input, Function f)
-        {
-            Array<T> ret;
-
-            for(int i = 0; i < input.count(); i++) {
-                ret[i] f(input[i]);
-            }
-
-            return ret;
         }
     }
 }
