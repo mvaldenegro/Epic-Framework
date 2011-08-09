@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Macros.h
  * Author: hunts
  *
@@ -8,7 +8,11 @@
 #ifndef EPIC_CORE_MACROS_H
 #define	EPIC_CORE_MACROS_H
 
-#define EPIC_INLINE                         inline
+#ifndef EPIC_DEBUG
+    #define EPIC_INLINE                         inline
+#else
+    #define EPIC_INLINE
+#endif
 
 #define EPIC_EXPORT                         __attribute__ ((visibility ("default")))
 #define EPIC_NO_EXPORT                      __attribute__ ((visibility ("hidden")))
