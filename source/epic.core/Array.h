@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Array.h
  * Author: hunts
  *
@@ -36,8 +36,8 @@ namespace Epic {
                         }
 
                         T *data;
-                        int count;
-                        int capacity;
+                        size_t count;
+                        size_t capacity;
                 };
 
                 SharedPointer<ArrayInternalData> arrayData;
@@ -84,7 +84,7 @@ namespace Epic {
                 {
                     return this->arrayData->count;
                 }
-                
+
                 inline size_t capacity() const
                 {
                     return this->arrayData->capacity;
@@ -94,27 +94,27 @@ namespace Epic {
                 {
                     return this->arrayData.referenceCount() > 1;
                 }
-                
+
                 T& at(size_t i)
                 {
                     return this->arrayData->data[i];
                 }
-                
+
                 const T& at(size_t i) const
                 {
                     return this->arrayData->data[i];
                 }
-                
+
                 T& operator[](size_t i)
                 {
                     return this->arrayData->data[i];
                 }
-                
+
                 const T& operator[](size_t i) const
                 {
                     return this->arrayData->data[i];
                 }
-                
+
                 bool operator==(const Array<T>& other) const
                 {
                     for(size_t i = 0; i < count(); i++) {
@@ -122,10 +122,10 @@ namespace Epic {
                             return false;
                         }
                     }
-                    
+
                     return true;
                 }
-                
+
                 bool operator!=(const Array<T>& other) const
                 {
                     for(size_t i = 0; i < count(); i++) {
@@ -133,48 +133,55 @@ namespace Epic {
                             return true;
                         }
                     }
-                    
+
                     return false;
                 }
-                                
+
                 void resize(size_t desiredSize)
                 {
                     if(desiredSize > this->arrayData->capacity) {
                         T *newArray = new T[2 * desiredSize];
-                        
+
                         copyMemory(newArray, this->arrayData->data, count());
-                        
+
                         delete [] this->arrayData->data;
                         this->arrayData->data = newArray;
-                        
+
                         this->arrayData->capacity = 2 * desiredSize;
                     }
                 }
-                
+
                 void append(const T& e)
                 {
                     resize(count() + 1);
-                    
+
                     this->arrayData->data[count()] = e;
                     this->arrayData->count++;
                 }
-                
+
+                Array<T>& operator<<(const T& e)
+                {
+                    append(e);
+
+                    return *this;
+                }
+
                 T* data()
                 {
                     return this->arrayData->data;
                 }
-                
+
                 const T* data() const
                 {
                     return this->arrayData->data;
                 }
-                
+
                 /* Iterator API */
-                
+
                 class Iterator
                 {
                     public:
-                    
+
                         T& operator*()
                         {
                             return array->at(index);
