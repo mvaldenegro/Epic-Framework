@@ -33,6 +33,18 @@ namespace Epic {
         }
 
         template<typename T>
+        bool memoryEquals(const T *a, const T *b, size_t size)
+        {
+            for(size_t i = 0; i < size; i++) {
+                if(a[i] != b[i]) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        template<typename T>
         void fillMemory(T *destiny, const T& constData, size_t size)
         {
             for(size_t i = 0; i < size; i++) {
