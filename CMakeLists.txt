@@ -11,4 +11,7 @@ file(GLOB epicCoreSources "source/epic.core/*.cpp")
 add_library(epic.core SHARED ${epicCoreSources})
 
 add_executable(vector2Test test/epic.math/vector2Test.cpp)
+add_executable(stringTest source/epic.core/tests/StringTest.cpp)
+target_link_libraries(stringTest epic.core)
+
 add_executable(arrayTest source/epic.core/tests/ArrayTest.cpp)
