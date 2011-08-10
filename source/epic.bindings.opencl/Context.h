@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   CLContext.h
  * Author: mvaldenegro
  *
@@ -8,25 +8,21 @@
 #ifndef EPIC_OPENCL_CLCONTEXT_H
 #define	EPIC_OPENCL_CLCONTEXT_H
 
+#include <epic.core/Array.h>
 #include <CL/cl.h>
 
 namespace Epic {
     namespace OpenCL {
         class Context {
             public:
+                Context(const Epic::Core::Array<Device>& devices);
+                Context(const Context& other);
+                ~Context();
+
             private:
                 cl_context mContext;
         };
     }
-};
-
-class CLContext {
-public:
-    CLContext();
-    CLContext(const CLContext& orig);
-    virtual ~CLContext();
-private:
-
 };
 
 #endif	/* EPIC_OPENCL_CLCONTEXT_H */

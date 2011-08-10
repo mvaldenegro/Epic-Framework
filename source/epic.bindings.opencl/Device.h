@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Device.h
  * Author: mvaldenegro
  *
@@ -8,6 +8,9 @@
 #ifndef EPIC_OPENCL_DEVICE_H
 #define	EPIC_OPENCL_DEVICE_H
 
+#include <CL/cl.h>
+#include <epic.core/Array.h>
+
 namespace Epic {
     namespace OpenCL {
         class Device
@@ -16,9 +19,15 @@ namespace Epic {
                 Device(const Device& other);
                 ~Device();
 
-                static Device *selectDevices(cl_device_type deviceType);
+                EPIC_INLINE cl_device_id deviceID() const
+                {
+                    return mDeviceID;
+                }
+
+                static Epic::Core::Array<Device> getDevices(const Platform& platform, cl_device_type deviceType);
 
             private:
+                Device(cl_device_id deviceID);
                 cl_device_id mDeviceID;
         };
     };
