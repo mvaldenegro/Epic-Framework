@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Vector2.h
  * Author: hunts
  *
@@ -244,7 +244,7 @@ namespace Epic {
                 }
 
                 /*! Addition operator.
-                 * 
+                 *
                  * Performs component-wise addition.
                  */
                 Vector2<Scalar> operator+(const Vector2<Scalar>& other) const
@@ -284,7 +284,7 @@ namespace Epic {
                 }
 
                 /*! Scalar addition operator.
-                 * 
+                 *
                  * Adds @a f to all components of this vector and returns the result.
                  */
                 Vector2<Scalar> operator+(Scalar f) const
@@ -355,7 +355,7 @@ namespace Epic {
         };
 
         /*! Scalar addition operator.
-         * 
+         *
          * Adds @a f to all components of this vector and returns the result.
          */
         template<typename Scalar>
@@ -439,8 +439,8 @@ namespace Epic {
         /*! Unsigned long 2D vector.
          */
         typedef Vector2<Epic::Core::UInt64> Vector2UL;
-    };
-};
+    }
+}
 
 #endif	/* EPIC_MATH_VECTOR2_H */
 

@@ -534,8 +534,8 @@ namespace Epic {
         /*! Unsigned long 4D vector.
          */
         typedef Vector4<Epic::Core::UInt64> Vector4UL;
-    };
-};
+    }
+}
 
 #endif	/* EPIC_MATH_VECTOR4_H */
 

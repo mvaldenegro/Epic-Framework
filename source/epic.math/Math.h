@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Math.h
  * Author: hunts
  *
@@ -82,8 +82,8 @@ namespace Epic {
         {
             return fuzzyEquals(a, b, 0.00001);
         }
-    };
-};
+    }
+}
 
 #endif	/* EPIC_MATH_MATH_H */
 

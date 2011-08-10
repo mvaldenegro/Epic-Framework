@@ -483,8 +483,8 @@ namespace Epic {
         /*! Unsigned long 3D vector.
          */
         typedef Vector3<Epic::Core::UInt64> Vector3UL;
-    };
-};
+    }
+}
 
 #endif	/* EPIC_MATH_VECTOR3_H */
 
