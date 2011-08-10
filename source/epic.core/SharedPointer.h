@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   SharedData.h
  * Author: hunts
  *
@@ -47,7 +47,7 @@ namespace Epic {
                  * Constructs a shared pointer, initializing it with a raw pointer.
                  * This smart pointer takes ownership of the raw pointer.
                  */
-                
+
                 SharedPointer(T *ptr) : sharedData(new InternalSharedData(ptr))
                 {
                 }
@@ -83,6 +83,8 @@ namespace Epic {
                 SharedPointer<T>& operator=(T *ptr)
                 {
                     attach(ptr);
+
+                    return *this;
                 }
 
                 /*! Assignment operator.
@@ -94,6 +96,8 @@ namespace Epic {
                 SharedPointer<T>& operator=(const SharedPointer<T>& other)
                 {
                     attach(other);
+
+                    return *this;
                 }
 
                 /*! Dereference operator.
@@ -110,14 +114,14 @@ namespace Epic {
                  *
                  * Dereferences this pointer and returns a constant reference to the pointer object.
                  */
-                
+
                 inline const T& operator*() const
                 {
                     return *(this->sharedData->pointer);
                 }
 
                 /*! Arrow operator.
-                 * 
+                 *
                  * This operator implements pointer semantics, allows the usage of SharedPointer as any raw pointer.
                  */
 
@@ -153,13 +157,13 @@ namespace Epic {
                 void attach(T *ptr)
                 {
                     if(isNotNull()) {
-                        
+
                         if(ptr != this->sharedData.pointer) {
                             detach();
-                            
+
                             this->sharedData = new InternalSharedData(ptr);
                         }
-                        
+
                     } else {
 
                         this->sharedData = new InternalSharedData(ptr);
@@ -181,8 +185,8 @@ namespace Epic {
                 }
 
                 /*! Detach operation.
-                 * 
-                 * 
+                 *
+                 *
                  */
 
                 void detach()
