@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   ASCIIString.h
  * Author: hunts
  *
@@ -8,26 +8,49 @@
 #ifndef ASCIISTRING_H
 #define	ASCIISTRING_H
 
+#include <epic.core/Core.h>
+
 namespace Epic {
     namespace Core {
-        class ASCIIString {
+
+        /*! Container for raw C strings (const char *).
+         */
+
+        class ASCIIString
+        {
             public:
-                ASCIIString();
-                ASCIIString(const char *cstring);
+                ASCIIString(const char *str);
                 ASCIIString(const ASCIIString& other);
                 ~ASCIIString();
 
+                ASCIIString& operator=(const char *str);
                 ASCIIString& operator=(const ASCIIString& other);
-                ASCIIString& operator=(const char *cstring);
 
-                inline int length() const {
-                    return this->length;
+                inline size_t length() const
+                {
+                    return this->dataLength;
                 }
 
+                inline const char *rawString() const
+                {
+                    return this->data;
+                }
+
+                inline char operator[](int i) const
+                {
+                    return this->data[i];
+                }
+
+                bool operator==(const char *str) const;
+                bool operator==(const ASCIIString& string) const;
+
+                bool operator!=(const char *str) const;
+                bool operator!=(const ASCIIString& string) const;
+
             private:
-                char *data;
-                int length;
-            
+                const char *data;
+                size_t dataLength;
+
         };
     }
 }
