@@ -137,18 +137,23 @@ namespace Epic {
                     return false;
                 }
 
-                void resize(size_t desiredSize)
+                void reserve(size_t size)
                 {
-                    if(desiredSize > this->arrayData->capacity) {
-                        T *newArray = new T[2 * desiredSize];
+                    if(size > this->arrayData->capacity) {
+                        T *newArray = new T[size];
 
                         copyMemory(newArray, this->arrayData->data, count());
 
                         delete [] this->arrayData->data;
                         this->arrayData->data = newArray;
 
-                        this->arrayData->capacity = 2 * desiredSize;
+                        this->arrayData->capacity = size;
                     }
+                }
+
+                void resize(size_t desiredSize)
+                {
+                    reserve(2 * desiredSize);
                 }
 
                 void append(const T& e)
