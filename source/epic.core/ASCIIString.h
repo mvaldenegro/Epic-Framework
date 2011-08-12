@@ -30,6 +30,11 @@ namespace Epic {
                 ASCIIString& operator=(const char *str);
                 ASCIIString& operator=(const ASCIIString& other);
 
+                inline bool isEmpty()
+                {
+                    return stringData.isEmpty();
+                }
+
                 inline size_t length() const
                 {
                     /* Account for the '\0' inside the array. */

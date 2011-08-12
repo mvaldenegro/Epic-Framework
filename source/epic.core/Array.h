@@ -82,6 +82,10 @@ namespace Epic {
 
                 inline size_t count() const
                 {
+                    if(arrayData.isNull()) {
+                        return 0;
+                    }
+
                     return this->arrayData->count;
                 }
 
