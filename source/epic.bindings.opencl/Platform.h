@@ -10,6 +10,7 @@
 
 #include <CL/cl.h>
 #include <epic.core/Array.h>
+#include <epic.core/ASCIIString.h>
 
 namespace Epic {
     namespace OpenCL {
@@ -17,6 +18,7 @@ namespace Epic {
         class Platform
         {
             public:
+                Platform();
                 Platform(const Platform& platform);
                 ~Platform();
 
@@ -24,6 +26,44 @@ namespace Epic {
                 {
                     return mPlatformID;
                 }
+
+                EPIC_INLINE Epic::Core::ASCIIString profile() const
+                {
+                    return getStringInfo(CL_PLATFORM_PROFILE);
+                }
+
+                EPIC_INLINE Epic::Core::ASCIIString version() const
+                {
+                    return getStringInfo(CL_PLATFORM_VERSION);
+                }
+
+                EPIC_INLINE Epic::Core::ASCIIString name() const
+                {
+                    return getStringInfo(CL_PLATFORM_NAME);
+                }
+
+                EPIC_INLINE Epic::Core::ASCIIString vendor() const
+                {
+                    return getStringInfo(CL_PLATFORM_VENDOR);
+                }
+
+                EPIC_INLINE Epic::Core::ASCIIString extensions() const
+                {
+                    return getStringInfo(CL_PLATFORM_EXTENSIONS);
+                }
+
+                EPIC_INLINE Epic::Core::ASCIIString getStringInfo(cl_platform_info paramName) const
+                {
+                    size_t length = getInfoSize(paramName);
+                    char *str = new char[length];
+
+                    getInfo(paramName, length, str);
+
+                    return Epic::Core::ASCIIString::wrap(str);
+                }
+
+                size_t getInfoSize(cl_platform_info paramName) const;
+                void getInfo(cl_platform_info paramName, size_t paramValueSize, void *paramValue) const;
 
                 static Epic::Core::Array<Platform> getPlatformIDs();
 
