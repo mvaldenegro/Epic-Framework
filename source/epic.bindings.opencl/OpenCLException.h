@@ -8,7 +8,7 @@
 #ifndef EPIC_OPENCL_OPENCLEXCEPTION_H
 #define	EPIC_OPENCL_OPENCLEXCEPTION_H
 
-#include <CL/cl.h>
+#include <CL/opencl.h>
 #include <stdexcept>
 
 #include <epic.core/Core.h>

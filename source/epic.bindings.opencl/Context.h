@@ -11,8 +11,9 @@
 #include <epic.core/Array.h>
 
 #include <epic.bindings.opencl/Device.h>
+#include <epic.bindings.opencl/CommandQueue.h>
 
-#include <CL/cl.h>
+#include <CL/opencl.h>
 
 namespace Epic {
     namespace OpenCL {
@@ -29,11 +30,11 @@ namespace Epic {
                 }
 
                 Epic::Core::Array<Device> devices() const;
-                
+
                 size_t getInfoSize(cl_context_info paramName) const;
                 void getInfo(cl_context_info paramName, size_t paramValueSize, void *paramValue) const;
 
-                //CommandQueue createCommandQueue();
+                CommandQueue createCommandQueue();
                 //Buffer createBuffer();
                 //Buffer createImage2D();
                 //Buffer createImage3D();

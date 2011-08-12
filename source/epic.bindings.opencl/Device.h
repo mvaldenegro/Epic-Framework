@@ -8,7 +8,7 @@
 #ifndef EPIC_OPENCL_DEVICE_H
 #define	EPIC_OPENCL_DEVICE_H
 
-#include <CL/cl.h>
+#include <CL/opencl.h>
 #include <epic.core/Array.h>
 
 #include <epic.bindings.opencl/Platform.h>
