@@ -44,7 +44,7 @@ namespace OpenCL {
     Context::Context(const Platform& platform, const Epic::Core::Array<Device>& devices)
     : mContext(0)
     {
-        Array<cl_device_id> deviceIDs =deviceIDHelper(devices);
+        Array<cl_device_id> deviceIDs = deviceIDHelper(devices);
 
         const cl_context_properties properties[] = {
             CL_CONTEXT_PLATFORM, (cl_context_properties) platform.platformID()
