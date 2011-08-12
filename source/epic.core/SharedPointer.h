@@ -48,7 +48,7 @@ namespace Epic {
                  * This smart pointer takes ownership of the raw pointer.
                  */
 
-                SharedPointer(T *ptr) : sharedData(new InternalSharedData(ptr))
+                SharedPointer(T *ptr = nullptr) : sharedData(new InternalSharedData(ptr))
                 {
                 }
 
