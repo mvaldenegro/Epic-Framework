@@ -181,11 +181,19 @@ namespace Epic {
 
                 T* data()
                 {
+                    if(arrayData.isNull()) {
+                        return nullptr;
+                    }
+
                     return this->arrayData->data;
                 }
 
                 const T* data() const
                 {
+                    if(arrayData.isNull()) {
+                        return nullptr;
+                    }
+
                     return this->arrayData->data;
                 }
 
