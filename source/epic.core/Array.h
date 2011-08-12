@@ -95,6 +95,11 @@ namespace Epic {
                     return this->arrayData.referenceCount() > 1;
                 }
 
+                inline bool isEmpty() const
+                {
+                    return count() == 0;
+                }
+
                 T& at(size_t i)
                 {
                     return this->arrayData->data[i];
