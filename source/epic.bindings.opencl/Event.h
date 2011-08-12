@@ -20,7 +20,7 @@ namespace Epic {
                 Event(const Event& other);
                 ~Event();
 
-                EPIC_INLINE cl_event event() const
+                EPIC_INLINE cl_event eventHandle() const
                 {
                     return mEvent;
                 }

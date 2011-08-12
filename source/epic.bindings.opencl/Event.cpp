@@ -29,7 +29,7 @@ namespace OpenCL {
         size_t ret;
         cl_int err = 0;
 
-        err = clGetEventInfo(event(), paramName, 0, nullptr, &ret);
+        err = clGetEventInfo(eventHandle(), paramName, 0, nullptr, &ret);
 
         if(err != CL_SUCCESS) {
             throw OpenCLException(err);
@@ -43,7 +43,7 @@ namespace OpenCL {
         cl_int err = 0;
         size_t written = 0;
 
-        err = clGetEventInfo(event(), paramName, paramValueSize, paramValue, &written);
+        err = clGetEventInfo(eventHandle(), paramName, paramValueSize, paramValue, &written);
 
         if(err != CL_SUCCESS) {
             throw OpenCLException(err);
@@ -55,7 +55,7 @@ namespace OpenCL {
         size_t ret;
         cl_int err = 0;
 
-        err = clGetEventProfilingInfo(event(), paramName, 0, nullptr, &ret);
+        err = clGetEventProfilingInfo(eventHandle(), paramName, 0, nullptr, &ret);
 
         if(err != CL_SUCCESS) {
             throw OpenCLException(err);
@@ -69,7 +69,7 @@ namespace OpenCL {
         cl_int err = 0;
         size_t written = 0;
 
-        err = clGetEventProfilingInfo(event(), paramName, paramValueSize, paramValue, &written);
+        err = clGetEventProfilingInfo(eventHandle(), paramName, paramValueSize, paramValue, &written);
 
         if(err != CL_SUCCESS) {
             throw OpenCLException(err);
