@@ -114,5 +114,19 @@ namespace OpenCL {
             throw OpenCLException(err);
         }
     }
+
+    CommandQueue Context::createCommandQueue(const Device& device, cl_command_queue_properties properties)
+    {
+        cl_command_queue queue;
+        cl_int err = 0;
+
+        queue = clCreateCommandQueue(clContext(), device.deviceID(), properties, &err);
+
+        if(err != CL_SUCCESS) {
+            throw OpenCLException(err);
+        }
+
+        return CommandQueue(queue);
+    }
 }
 }

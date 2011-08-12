@@ -34,7 +34,7 @@ namespace Epic {
                 size_t getInfoSize(cl_context_info paramName) const;
                 void getInfo(cl_context_info paramName, size_t paramValueSize, void *paramValue) const;
 
-                CommandQueue createCommandQueue();
+                CommandQueue createCommandQueue(const Device& device, cl_command_queue_properties properties = 0);
                 //Buffer createBuffer();
                 //Buffer createImage2D();
                 //Buffer createImage3D();
