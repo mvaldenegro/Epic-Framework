@@ -52,7 +52,7 @@ namespace Epic {
 
                 /*! Constructor. Initializes this array instance by copying the data from a c-style array.
                  */
-                Array(const T* carray, int len) : arrayData(new T[len], len, len)
+                Array(const T* carray, size_t len) : arrayData(new ArrayInternalData(new T[len], len, len))
                 {
                     copyMemory(this->arrayData->data, carray, this->arrayData->count);
                 }
@@ -117,24 +117,23 @@ namespace Epic {
 
                 bool operator==(const Array<T>& other) const
                 {
-                    for(size_t i = 0; i < count(); i++) {
-                        if(other.at(i) != this->at(i)) {
-                            return false;
+                    if(count() == other.count()) {
+
+                        for(size_t i = 0; i < count(); i++) {
+                            if(!(other.at(i) == this->at(i))) {
+                                return false;
+                            }
                         }
+
+                        return true;
                     }
 
-                    return true;
+                    return false;
                 }
 
                 bool operator!=(const Array<T>& other) const
                 {
-                    for(size_t i = 0; i < count(); i++) {
-                        if(other.at(i) != this->at(i)) {
-                            return true;
-                        }
-                    }
-
-                    return false;
+                    return !(*this == other);
                 }
 
                 void reserve(size_t size)
@@ -181,6 +180,15 @@ namespace Epic {
                     return this->arrayData->data;
                 }
 
+                static Array<T> wrap(T *array, size_t len)
+                {
+                    Array<T> ret;
+
+                    ret.arrayData = SharedPointer<ArrayInternalData>(new ArrayInternalData(array, len, len));
+
+                    return ret;
+                }
+
                 /* Iterator API */
 
                 class Iterator
@@ -192,7 +200,7 @@ namespace Epic {
                             return array->at(index);
                         }
                     private:
-                        int index;
+                        size_t index;
                         Array<T> *array;
                 };
         };
