@@ -97,7 +97,7 @@ namespace Epic {
 
                 inline bool isEmpty() const
                 {
-                    return count() == 0;
+                    return arrayData.isNull() || (count() == 0);
                 }
 
                 T& at(size_t i)
