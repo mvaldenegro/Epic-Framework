@@ -9,16 +9,20 @@
 #define	ASCIISTRING_H
 
 #include <epic.core/Core.h>
+#include <epic.core/Array.h>
 
 namespace Epic {
     namespace Core {
 
-        /*! Container for raw C strings (const char *).
+        /*! ASCII String.
+         *
+         * This class contains a char *, representing a ASCII/Latin-1 string.
          */
 
         class ASCIIString
         {
             public:
+                ASCIIString();
                 ASCIIString(const char *str);
                 ASCIIString(const ASCIIString& other);
                 ~ASCIIString();
@@ -28,17 +32,29 @@ namespace Epic {
 
                 inline size_t length() const
                 {
-                    return this->dataLength;
+                    /* Account for the '\0' inside the array. */
+
+                    return stringData.count() - 1;
                 }
 
-                inline const char *rawString() const
+                inline char *data()
                 {
-                    return this->data;
+                    return stringData.data();
+                }
+
+                inline const char *data() const
+                {
+                    return stringData.data();
+                }
+
+                inline char& operator[](int i)
+                {
+                    return stringData[i];
                 }
 
                 inline char operator[](int i) const
                 {
-                    return this->data[i];
+                    return stringData[i];
                 }
 
                 bool operator==(const char *str) const;
@@ -47,9 +63,15 @@ namespace Epic {
                 bool operator!=(const char *str) const;
                 bool operator!=(const ASCIIString& string) const;
 
+                EPIC_INLINE operator const char *()
+                {
+                    return data();
+                }
+
+                static ASCIIString wrap(char *str);
+
             private:
-                const char *data;
-                size_t dataLength;
+                Array<char> stringData;
 
         };
     }
