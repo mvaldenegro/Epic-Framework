@@ -9,9 +9,9 @@
 #define	EPIC_OPENCL_DEVICE_H
 
 #include <CL/opencl.h>
-#include <epic.core/Array.h>
 
-#include <epic.bindings.opencl/Platform.h>
+#include <epic.core/Array.h>
+#include <epic.core/ASCIIString.h>
 
 namespace Epic {
     namespace OpenCL {
@@ -19,6 +19,7 @@ namespace Epic {
         {
             public:
                 Device();
+                Device(cl_device_id deviceID);
                 Device(const Device& other);
                 ~Device();
 
@@ -70,11 +71,9 @@ namespace Epic {
                 size_t getInfoSize(cl_device_info paramName) const;
                 void getInfo(cl_device_info paramName, size_t paramValueSize, void *paramValue) const;
 
-                static Epic::Core::Array<Device> getDevices(const Platform& platform, cl_device_type deviceType);
                 static Device wrap(cl_device_id deviceID);
 
             private:
-                Device(cl_device_id deviceID);
                 cl_device_id mDeviceID;
         };
     }

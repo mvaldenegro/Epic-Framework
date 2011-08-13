@@ -9,8 +9,11 @@
 #define	EPIC_OPENCL_PLATFORM_H
 
 #include <CL/opencl.h>
+
 #include <epic.core/Array.h>
 #include <epic.core/ASCIIString.h>
+
+#include <epic.bindings.opencl/Device.h>
 
 namespace Epic {
     namespace OpenCL {
@@ -61,6 +64,8 @@ namespace Epic {
 
                     return Epic::Core::ASCIIString::wrap(str);
                 }
+
+                Epic::Core::Array<Device> devices(cl_device_type deviceType) const;
 
                 size_t getInfoSize(cl_platform_info paramName) const;
                 void getInfo(cl_platform_info paramName, size_t paramValueSize, void *paramValue) const;

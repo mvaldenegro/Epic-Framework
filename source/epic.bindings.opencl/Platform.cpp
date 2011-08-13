@@ -55,6 +55,31 @@ namespace OpenCL {
         }
     }
 
+    Epic::Core::Array<Device> Platform::devices(cl_device_type deviceType) const
+    {
+        Epic::Core::Array<Device> ret;
+        cl_uint numDevices = 0;
+
+        clGetDeviceIDs(platformID(), deviceType, 0, nullptr, &numDevices);
+
+        if(numDevices > 0) {
+            cl_device_id *devices = new cl_device_id[numDevices];
+            int err = clGetDeviceIDs(platformID(), deviceType, numDevices, devices, nullptr);
+
+            if(err != CL_SUCCESS) {
+                throw OpenCLException(err);
+            }
+
+            for(cl_uint i = 0; i < numDevices; i++) {
+                ret << Device(devices[i]);
+            }
+
+            delete [] devices;
+        }
+
+        return ret;
+    }
+
     Epic::Core::Array<Platform> Platform::getPlatformIDs()
     {
         Epic::Core::Array<Platform> ret;
