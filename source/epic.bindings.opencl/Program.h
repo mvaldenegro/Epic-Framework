@@ -31,16 +31,25 @@ namespace Epic {
                     return mProgram;
                 }
 
+                EPIC_INLINE cl_uint numberOfDevices() const
+                {
+                    cl_uint ret = 0;
 
+                    getInfo(CL_PROGRAM_NUM_DEVICES, sizeof(cl_uint), &ret);
 
-                bool build(const Epic::Core::Array<Device>& devices = Epic::Core::Array<Device>(),
-                           const Epic::Core::ASCIIString& options = Epic::Core::ASCIIString()) const;
+                    return ret;
+                }
+
+                Epic::Core::Array<Device> devices() const;
 
                 size_t getInfoSize(cl_program_info paramName) const;
                 void getInfo(cl_program_info paramName, size_t paramValueSize, void *paramValue) const;
 
                 size_t getBuildInfoSize(cl_program_build_info paramName, const Device& device) const;
                 void getBuildInfo(cl_program_build_info paramName, const Device& device, size_t paramValueSize, void *paramValue) const;
+
+                bool build(const Epic::Core::Array<Device>& devices = Epic::Core::Array<Device>(),
+                           const Epic::Core::ASCIIString& options = Epic::Core::ASCIIString()) const;
 
             private:
                 cl_program mProgram;
