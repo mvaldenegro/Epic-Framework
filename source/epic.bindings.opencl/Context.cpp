@@ -18,7 +18,8 @@ namespace OpenCL {
     : mContext(0)
     {
         const cl_context_properties properties[] = {
-            CL_CONTEXT_PLATFORM, (cl_context_properties) platform.platformID()
+            CL_CONTEXT_PLATFORM, reinterpret_cast<cl_context_properties>(platform.platformID()),
+            0
         };
 
         cl_int err = 0;
@@ -36,7 +37,8 @@ namespace OpenCL {
         Array<cl_device_id> deviceIDs = deviceIDHelper(devices);
 
         const cl_context_properties properties[] = {
-            CL_CONTEXT_PLATFORM, (cl_context_properties) platform.platformID()
+            CL_CONTEXT_PLATFORM, reinterpret_cast<cl_context_properties>(platform.platformID()),
+            0
         };
 
         cl_int err = 0;
