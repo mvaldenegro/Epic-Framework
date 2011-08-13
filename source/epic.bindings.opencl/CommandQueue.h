@@ -21,6 +21,10 @@ namespace Epic {
                 CommandQueue(const CommandQueue& other);
                 ~CommandQueue();
 
+                EPIC_INLINE cl_command_queue queueHandle() const
+                {
+                    return mCommandQueue;
+                }
 
 
             private:
