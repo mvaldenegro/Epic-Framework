@@ -116,12 +116,12 @@ namespace Epic {
 
                 T& operator[](size_t i)
                 {
-                    return this->arrayData->data[i];
+                    return at(i);
                 }
 
                 const T& operator[](size_t i) const
                 {
-                    return this->arrayData->data[i];
+                    return at(i);
                 }
 
                 bool operator==(const Array<T>& other) const
@@ -195,6 +195,17 @@ namespace Epic {
                     }
 
                     return this->arrayData->data;
+                }
+
+                bool contains(const T& e) const
+                {
+                    for(size_t i = 0; i < count(); i++) {
+                        if(at(i) == e) {
+                            return true;
+                        }
+                    }
+
+                    return false;
                 }
 
                 static Array<T> wrap(T *array, size_t len)
