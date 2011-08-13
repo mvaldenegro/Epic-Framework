@@ -70,9 +70,7 @@ namespace Epic {
 
                 size_t getInfoSize(cl_device_info paramName) const;
                 void getInfo(cl_device_info paramName, size_t paramValueSize, void *paramValue) const;
-
-                static Device wrap(cl_device_id deviceID);
-
+                
             private:
                 cl_device_id mDeviceID;
         };

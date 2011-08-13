@@ -54,10 +54,5 @@ namespace OpenCL {
             throw OpenCLException(err);
         }
     }
-
-    Device Device::wrap(cl_device_id deviceID)
-    {
-        return Device(deviceID);
-    }
 }
 }
