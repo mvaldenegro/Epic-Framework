@@ -7,20 +7,9 @@
 
 #include "Context.h"
 #include "OpenCLException.h"
+#include "Helpers.h"
 
 using Epic::Core::Array;
-
-static inline Array<cl_device_id> deviceIDHelper(const Array<Epic::OpenCL::Device>& devices)
-{
-    Array<cl_device_id> ret;
-    ret.reserve(devices.count());
-
-    for(size_t i = 0; i < devices.count(); i++) {
-        ret << devices[i].deviceID();
-    }
-
-    return ret;
-}
 
 namespace Epic {
 namespace OpenCL {
@@ -94,7 +83,7 @@ namespace OpenCL {
         size_t ret;
         cl_int err = 0;
 
-        err = clGetContextInfo(clContext(), paramName, 0, nullptr, &ret);
+        err = clGetContextInfo(contextHandle(), paramName, 0, nullptr, &ret);
 
         if(err != CL_SUCCESS) {
             throw OpenCLException(err);
@@ -108,7 +97,7 @@ namespace OpenCL {
         cl_int err = 0;
         size_t written = 0;
 
-        err = clGetContextInfo(clContext(), paramName, paramValueSize, paramValue, &written);
+        err = clGetContextInfo(contextHandle(), paramName, paramValueSize, paramValue, &written);
 
         if(err != CL_SUCCESS) {
             throw OpenCLException(err);
@@ -120,13 +109,27 @@ namespace OpenCL {
         cl_command_queue queue;
         cl_int err = 0;
 
-        queue = clCreateCommandQueue(clContext(), device.deviceID(), properties, &err);
+        queue = clCreateCommandQueue(contextHandle(), device.deviceID(), properties, &err);
 
         if(err != CL_SUCCESS) {
             throw OpenCLException(err);
         }
 
         return CommandQueue(queue);
+    }
+
+    Program Context::createProgram(const Epic::Core::ASCIIString& sourceCode)
+    {
+        cl_int err = 0;
+        const char *source = sourceCode.data();
+
+        cl_program program = clCreateProgramWithSource(contextHandle(), 1, &source, nullptr, &err);
+
+        if(err != CL_SUCCESS) {
+            throw OpenCLException(err);
+        }
+
+        return Program(program);
     }
 }
 }

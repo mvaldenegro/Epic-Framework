@@ -12,6 +12,8 @@
 
 #include <epic.bindings.opencl/Device.h>
 #include <epic.bindings.opencl/CommandQueue.h>
+#include <epic.bindings.opencl/Program.h>
+#include <epic.bindings.opencl/Platform.h>
 
 #include <CL/opencl.h>
 
@@ -24,7 +26,7 @@ namespace Epic {
                 Context(const Context& other);
                 ~Context();
 
-                inline cl_context clContext() const
+                inline cl_context contextHandle() const
                 {
                     return mContext;
                 }
@@ -39,7 +41,7 @@ namespace Epic {
                 //Buffer createImage2D();
                 //Buffer createImage3D();
                 //Sampler clCreateSampler();
-                //Program clCreateProgram();
+                Program createProgram(const Epic::Core::ASCIIString& sourceCode);
 
             private:
                 cl_context mContext;
