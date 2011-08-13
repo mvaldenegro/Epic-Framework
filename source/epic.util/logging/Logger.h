@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Logger.h
  * Author: hunts
  *
@@ -15,11 +15,15 @@ namespace Epic {
         namespace Logging {
             class Logger
             {
+                private:
+                    static Logger staticRootLogger;
+
                 public:
-                    virtual void debug(Epic::Core::String msg) = 0;
-                    virtual void error(Epic::Core::String msg) = 0;
-                    virtual void warning(Epic::Core::String msg) = 0;
-                    virtual void fatal(Epic::Core::String msg) = 0;
+
+                    void debug(Epic::Core::String msg) = 0;
+                    void error(Epic::Core::String msg) = 0;
+                    void warning(Epic::Core::String msg) = 0;
+                    void fatal(Epic::Core::String msg) = 0;
             };
         };
     };
