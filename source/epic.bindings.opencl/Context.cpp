@@ -60,17 +60,15 @@ namespace OpenCL {
     Epic::Core::Array<Device> Context::devices() const
     {
         Epic::Core::Array<Device> ret;
-        size_t numDevices = getInfoSize(CL_CONTEXT_DEVICES);
+        size_t numDevicesSize = getInfoSize(CL_CONTEXT_DEVICES);
+        size_t numDevices =  numDevicesSize / sizeof(cl_device_id);
 
         if(numDevices > 0) {
             cl_device_id *devs = new cl_device_id[numDevices];
 
-            getInfo(CL_CONTEXT_DEVICES, numDevices, devs);
+            getInfo(CL_CONTEXT_DEVICES, numDevicesSize, devs);
 
-            for(size_t i = 0; i < numDevices; i++) {
-
-                ret << Device::wrap(devs[i]);
-            }
+            ret = deviceIDToDeviceHelper(devs, numDevices);
 
             delete [] devs;
         }

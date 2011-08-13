@@ -27,6 +27,17 @@ namespace Epic {
 
             return ret;
         }
+
+        static inline Epic::Core::Array<Device> deviceIDToDeviceHelper(const cl_device_id* devs, size_t length)
+        {
+            Epic::Core::Array<Device> ret;
+
+            for(size_t i = 0; i < length; i++) {
+                ret << Device(devs[i]);
+            }
+
+            return ret;
+        }
     }
 }
 

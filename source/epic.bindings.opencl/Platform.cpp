@@ -7,6 +7,7 @@
 
 #include "Platform.h"
 #include "OpenCLException.h"
+#include "Helpers.h"
 
 namespace Epic {
 namespace OpenCL {
@@ -70,9 +71,7 @@ namespace OpenCL {
                 throw OpenCLException(err);
             }
 
-            for(cl_uint i = 0; i < numDevices; i++) {
-                ret << Device(devices[i]);
-            }
+            ret = deviceIDToDeviceHelper(devices, numDevices);
 
             delete [] devices;
         }
