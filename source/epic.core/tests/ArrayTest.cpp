@@ -34,6 +34,8 @@ int main(int argc, char** argv)
 
     print(a);
 
+    cout << "Array empty? " << a.isEmpty() << endl;
+
     Epic::Core::Array<int> b = a;
 
     print(b);
@@ -56,6 +58,12 @@ int main(int argc, char** argv)
 
     print(a);
     print(b);
+
+    Epic::Core::Array<int> nil;
+
+    cout << "Empty array pointer " << nil.data() << endl;
+    cout << "Empty array size " << nil.count() << endl;
+    cout << "Empty array empty? " << nil.isEmpty() << endl;
 
     return 0;
 }

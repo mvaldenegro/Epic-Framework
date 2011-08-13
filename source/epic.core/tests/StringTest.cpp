@@ -18,7 +18,7 @@ using Epic::Core::Array;
  */
 int main(int argc, char** argv)
 {
-    String hello = ASCIIString("hola mundo");
+    String hello("hola mundo");
 
     Array<char> str = hello.toAscii();
 
