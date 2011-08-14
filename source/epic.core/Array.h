@@ -18,6 +18,7 @@ namespace Epic {
         /*! Array container.
          *
          * This class represents an Array.
+         * TODO: Implement detach()
          */
 
         template<typename T>
@@ -33,6 +34,11 @@ namespace Epic {
                             this->data = data;
                             this->count = count;
                             this->capacity = capacity;
+                        }
+                        
+                        ~ArrayInternalData()
+                        {
+                            delete [] data;
                         }
 
                         T *data;
@@ -106,11 +112,13 @@ namespace Epic {
 
                 T& at(size_t i)
                 {
+                    detach();
+                    
                     return this->arrayData->data[i];
                 }
 
                 const T& at(size_t i) const
-                {
+                {   
                     return this->arrayData->data[i];
                 }
 
@@ -147,6 +155,8 @@ namespace Epic {
 
                 void reserve(size_t size)
                 {
+                    detach();
+                    
                     if(size > this->arrayData->capacity) {
                         T *newArray = new T[size];
 
@@ -166,6 +176,7 @@ namespace Epic {
 
                 void append(const T& e)
                 {
+                    detach();
                     resize(count() + 1);
 
                     this->arrayData->data[count()] = e;
@@ -184,6 +195,8 @@ namespace Epic {
                     if(arrayData.isNull()) {
                         return nullptr;
                     }
+                    
+                    detach();
 
                     return this->arrayData->data;
                 }
@@ -206,6 +219,22 @@ namespace Epic {
                     }
 
                     return false;
+                }
+                
+                void detach()
+                {
+                    if(!arrayData.isShared()) {
+                        return;
+                    }
+                    
+                    T *newData = new T[capacity()];
+                    copyMemory(newData, this->arrayData->data, count());
+                    
+                    size_t cnt = count();
+                    size_t cap = capacity();
+                    
+                    arrayData.detach();
+                    arrayData = new ArrayInternalData(newData, cnt, cap);
                 }
 
                 static Array<T> wrap(T *array, size_t len)
