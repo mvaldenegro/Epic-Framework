@@ -215,6 +215,14 @@ namespace Epic {
                 {
                     return this->sharedData->referenceCount;
                 }
+                
+                /*! Returns a raw const pointer to the pointed data.
+                 */
+                
+                const T* data() const
+                {
+                    return this->sharedData->pointer;
+                }
         };
     }
 }
