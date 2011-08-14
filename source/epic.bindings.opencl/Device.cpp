@@ -29,6 +29,13 @@ namespace OpenCL {
 
     Device::~Device() {
     }
+    
+    Device& Device::operator=(const Device& other)
+    {
+        mDeviceID = other.mDeviceID;
+        
+        return *this;
+    }
 
     size_t Device::getInfoSize(cl_device_info paramName) const
     {

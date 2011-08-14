@@ -22,6 +22,8 @@ namespace Epic {
                 Device(cl_device_id deviceID);
                 Device(const Device& other);
                 ~Device();
+                
+                Device& operator=(const Device& other);
 
                 EPIC_INLINE cl_device_id deviceID() const
                 {
