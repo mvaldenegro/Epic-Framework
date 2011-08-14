@@ -166,7 +166,7 @@ namespace Epic {
                 {
                     if(isNotNull()) {
 
-                        if(ptr != this->sharedData.pointer) {
+                        if(ptr != this->sharedData->pointer) {
                             detach();
 
                             this->sharedData = new InternalSharedData(ptr);
@@ -211,7 +211,7 @@ namespace Epic {
                     }
                 }
 
-                int referenceCount()
+                int referenceCount() const
                 {
                     return this->sharedData->referenceCount;
                 }
