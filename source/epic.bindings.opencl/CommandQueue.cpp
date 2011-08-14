@@ -29,6 +29,16 @@ namespace OpenCL {
     CommandQueue::~CommandQueue()
     {
     }
+    
+    void CommandQueue::flush() const
+    {
+        clFlush(queueHandle());
+    }
+    
+    void CommandQueue::finish() const
+    {
+        clFinish(queueHandle());
+    }
 }
 }
 

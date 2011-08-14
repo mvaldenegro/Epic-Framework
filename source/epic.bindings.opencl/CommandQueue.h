@@ -26,6 +26,8 @@ namespace Epic {
                     return mCommandQueue;
                 }
 
+                void flush() const;
+                void finish() const;
 
             private:
                 cl_command_queue mCommandQueue;
