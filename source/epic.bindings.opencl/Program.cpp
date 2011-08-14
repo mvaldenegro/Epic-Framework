@@ -9,6 +9,11 @@
 #include "Helpers.h"
 #include "OpenCLException.h"
 
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
 using Epic::Core::Array;
 
 namespace Epic {
@@ -115,12 +120,53 @@ namespace OpenCL {
         }
 
         cl_int err = clBuildProgram(programHandle(), numDevices, deviceArray.data(), options.data(), nullptr, nullptr);
-
+        
+        /* Skip CL_BUILD_PROGRAM_FAILURE error, will be handled later in this code. */
+        if((err != CL_BUILD_PROGRAM_FAILURE) && (err != CL_SUCCESS)) {
+            throw OpenCLException(err);
+        }
+        
+        Epic::Core::Array<Device> devs;
+        bool ret = true;
+        
+        if(devices.isEmpty()) {
+            devs = this->devices();
+        } else {
+            devs = devices;
+        }
+                
+        for(size_t i = 0; i < devs.count(); i++) {
+            cl_build_status status = buildStatus(devs[i]);
+            
+            cout << "Build log for device " << devs[i].deviceID() << endl;
+            cout << buildLog(devs[i]) << endl;
+            
+            while(status == CL_BUILD_IN_PROGRESS) {
+                status = buildStatus(devs[i]);
+            }
+            
+            if(status == CL_BUILD_SUCCESS) {
+                cout << "Program compilation successful" << endl;
+            } else {
+                cout << "Program compilation failed" << endl;
+            }
+            
+            ret &= (status == CL_BUILD_SUCCESS);
+        }
+        
+        return ret;
+    }
+    
+    Kernel Program::createKernel(const Epic::Core::ASCIIString& kernelName) const
+    {
+        cl_int err = 0;
+        cl_kernel kernel = clCreateKernel(programHandle(), kernelName.data(), &err);
+        
         if(err != CL_SUCCESS) {
             throw OpenCLException(err);
         }
         
-        return true;
+        return Kernel(kernel);
     }
 }
 }
