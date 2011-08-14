@@ -205,9 +205,9 @@ namespace Epic {
 
                         if(this->sharedData->referenceCount == 0) {
                             delete this->sharedData;
-
-                            this->sharedData = nullptr;
                         }
+                        
+                        this->sharedData = nullptr;
                     }
                 }
 
