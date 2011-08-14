@@ -19,7 +19,8 @@
 
 namespace Epic {
     namespace OpenCL {
-        class Context {
+        class Context
+        {
             public:
                 Context(const Platform& platform, cl_device_type deviceType);
                 Context(const Platform& platform, const Epic::Core::Array<Device>& devices);

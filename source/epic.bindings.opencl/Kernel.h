@@ -15,7 +15,8 @@
 
 namespace Epic {
     namespace OpenCL {
-        class Kernel {
+        class Kernel
+        {
             public:
                 Kernel();
                 Kernel(cl_kernel kernel);

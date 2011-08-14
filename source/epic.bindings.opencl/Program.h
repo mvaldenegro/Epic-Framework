@@ -20,7 +20,8 @@
 namespace Epic {
     namespace OpenCL {
 
-        class Program {
+        class Program
+        {
             public:
                 Program();
                 Program(cl_program program);

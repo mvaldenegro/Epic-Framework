@@ -14,7 +14,8 @@
 
 namespace Epic {
     namespace OpenCL {
-        class Event {
+        class Event
+        {
             public:
                 Event();
                 Event(const Event& other);
