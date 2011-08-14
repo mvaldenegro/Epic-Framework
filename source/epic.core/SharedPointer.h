@@ -150,6 +150,14 @@ namespace Epic {
                 {
                     return (this->sharedData != nullptr) && (this->sharedData->pointer != nullptr);
                 }
+                
+                /*! Returns true if this pointer is shared (referenceCount() > 1), or false otherwise.
+                 */
+                
+                inline bool isShared() const
+                {
+                    return referenceCount() > 1;
+                }
 
                 /*! Attach operation.
                  */
