@@ -5,8 +5,8 @@
  * Created on 12 de agosto de 2011, 12:55 PM
  */
 
-#ifndef PROGRAM_H
-#define	PROGRAM_H
+#ifndef EPIC_OPENCL_PROGRAM_H
+#define	EPIC_OPENCL_PROGRAM_H
 
 #include <epic.core/Core.h>
 #include <epic.core/ASCIIString.h>
@@ -95,5 +95,5 @@ namespace Epic {
     }
 }
 
-#endif	/* PROGRAM_H */
+#endif	/* EPIC_OPENCL_PROGRAM_H */
 

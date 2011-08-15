@@ -5,8 +5,8 @@
  * Created on 13 de agosto de 2011, 10:25 PM
  */
 
-#ifndef BUFFER_H
-#define	BUFFER_H
+#ifndef EPIC_OPENCL_BUFFER_H
+#define	EPIC_OPENCL_BUFFER_H
 
 #include <epic.core/Core.h>
 
@@ -35,5 +35,5 @@ namespace Epic {
     }
 }
 
-#endif	/* BUFFER_H */
+#endif	/* EPIC_OPENCL_BUFFER_H */
 
