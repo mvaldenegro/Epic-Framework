@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="79">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df name="epic.framework" root=".">
+      <df name="dist">
+        <df name="Debug">
+          <df name="GNU-Linux-x86">
+          </df>
+        </df>
+      </df>
+      <df name="docs">
+        <df name="html">
+          <df name="search">
+          </df>
+        </df>
+      </df>
+      <df name="source">
+        <df name="epic.bindings.opencl">
+          <df name="tests">
+            <in>openclTest.cpp</in>
+          </df>
+          <in>Buffer.cpp</in>
+          <in>Buffer.h</in>
+          <in>CommandQueue.cpp</in>
+          <in>CommandQueue.h</in>
+          <in>Context.cpp</in>
+          <in>Context.h</in>
+          <in>Device.cpp</in>
+          <in>Device.h</in>
+          <in>Event.cpp</in>
+          <in>Event.h</in>
+          <in>Helpers.h</in>
+          <in>Image2D.cpp</in>
+          <in>Image2D.h</in>
+          <in>Image3D.cpp</in>
+          <in>Image3D.h</in>
+          <in>ImageFormat.h</in>
+          <in>Kernel.cpp</in>
+          <in>Kernel.h</in>
+          <in>OpenCLException.h</in>
+          <in>Platform.cpp</in>
+          <in>Platform.h</in>
+          <in>Program.cpp</in>
+          <in>Program.h</in>
+          <in>Sampler.cpp</in>
+          <in>Sampler.h</in>
+        </df>
+        <df name="epic.bindings.opengl">
+        </df>
+        <df name="epic.core">
+          <df name="tests">
+            <in>ArrayTest.cpp</in>
+            <in>PointerTest.cpp</in>
+            <in>StringTest.cpp</in>
+          </df>
+          <in>ASCIIString.cpp</in>
+          <in>ASCIIString.h</in>
+          <in>Algorithms.h</in>
+          <in>Array.h</in>
+          <in>Assert.h</in>
+          <in>Compiler.h</in>
+          <in>Core.h</in>
+          <in>Endian.h</in>
+          <in>LinkedList.h</in>
+          <in>Macros.h</in>
+          <in>MapReduce.h</in>
+          <in>Pointer.h</in>
+          <in>SharedPointer.h</in>
+          <in>String.cpp</in>
+          <in>String.h</in>
+          <in>Types.h</in>
+        </df>
+        <df name="epic.image">
+          <df name="tests">
+            <in>imageTest.cpp</in>
+          </df>
+          <in>Docs.cpp</in>
+          <in>Image.cpp</in>
+          <in>Image.h</in>
+          <in>Pixel.h</in>
+          <in>PixelFormat.h</in>
+          <in>R8Image.cpp</in>
+          <in>R8Image.h</in>
+          <in>RG8Image.cpp</in>
+          <in>RG8Image.h</in>
+          <in>RGB8Image.cpp</in>
+          <in>RGB8Image.h</in>
+          <in>RGBA8Image.cpp</in>
+          <in>RGBA8Image.h</in>
+        </df>
+        <df name="epic.math">
+          <in>Math.h</in>
+          <in>Matrix4.h</in>
+          <in>Vector2.h</in>
+          <in>Vector3.h</in>
+          <in>Vector4.h</in>
+          <in>VectorMath.h</in>
+        </df>
+        <df name="epic.util">
+          <df name="allocator">
+            <in>Allocator.h</in>
+          </df>
+          <df name="logging">
+            <in>Logger.h</in>
+          </df>
+        </df>
+      </df>
+      <df name="test">
+        <df name="epic.math">
+          <in>vector2Test.cpp</in>
+        </df>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>Makefile</itemPath>
+      <itemPath>Makefile-epic.framework.mk</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject|build)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile-epic.framework.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>GNU|GNU</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>$(MAKE) -f Makefile</buildCommand>
+          <cleanCommand>$(MAKE) -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>source</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+    </conf>
+  </confs>
+</configurationDescriptor>

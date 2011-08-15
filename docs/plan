@@ -1,0 +1,16 @@
+Development Plan
+
+This document describes class implementation requirements. The format is simple.
+A class is followed by a list of dependencies.
+
+Logger
+- HashTable
+
+Properties
+- HashTable
+
+HashTable
+- LinkedList
+
+LinkedList
+- Iterator API
