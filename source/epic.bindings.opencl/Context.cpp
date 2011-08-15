@@ -104,7 +104,7 @@ namespace OpenCL {
         }
     }
 
-    CommandQueue Context::createCommandQueue(const Device& device, cl_command_queue_properties properties)
+    CommandQueue Context::createCommandQueue(const Device& device, cl_command_queue_properties properties) const
     {
         cl_command_queue queue;
         cl_int err = 0;
@@ -117,8 +117,18 @@ namespace OpenCL {
 
         return CommandQueue(queue);
     }
+    
+    Buffer Context::createBuffer(cl_mem_flags flags, size_t size, void *hostPointer) const
+    {
+        cl_int err = 0;
+        cl_mem ret;
+        
+        ret = clCreateBuffer(contextHandle(), flags, size, hostPointer, &err);
+        
+        return Buffer(ret);
+    }
 
-    Program Context::createProgram(const Epic::Core::ASCIIString& sourceCode)
+    Program Context::createProgram(const Epic::Core::ASCIIString& sourceCode) const
     {
         cl_int err = 0;
         const char *source = sourceCode.data();

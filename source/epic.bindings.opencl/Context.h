@@ -14,6 +14,7 @@
 #include <epic.bindings.opencl/CommandQueue.h>
 #include <epic.bindings.opencl/Program.h>
 #include <epic.bindings.opencl/Platform.h>
+#include <epic.bindings.opencl/Buffer.h>
 
 #include <CL/opencl.h>
 
@@ -37,12 +38,12 @@ namespace Epic {
                 size_t getInfoSize(cl_context_info paramName) const;
                 void getInfo(cl_context_info paramName, size_t paramValueSize, void *paramValue) const;
 
-                CommandQueue createCommandQueue(const Device& device, cl_command_queue_properties properties = 0);
-                //Buffer createBuffer();
+                CommandQueue createCommandQueue(const Device& device, cl_command_queue_properties properties = 0) const;
+                Buffer createBuffer(cl_mem_flags flags, size_t size, void *hostPointer = nullptr) const;
                 //Buffer createImage2D();
                 //Buffer createImage3D();
                 //Sampler clCreateSampler();
-                Program createProgram(const Epic::Core::ASCIIString& sourceCode);
+                Program createProgram(const Epic::Core::ASCIIString& sourceCode) const;
 
             private:
                 cl_context mContext;
