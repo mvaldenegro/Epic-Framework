@@ -125,6 +125,10 @@ namespace OpenCL {
         
         ret = clCreateBuffer(contextHandle(), flags, size, hostPointer, &err);
         
+        if(err != CL_SUCCESS) {
+            throw OpenCLException(err);
+        }
+        
         return Buffer(ret);
     }
 
