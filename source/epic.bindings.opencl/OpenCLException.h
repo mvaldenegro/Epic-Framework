@@ -247,7 +247,7 @@ namespace Epic {
                 cl_int mErrorCode;
         };
 
-        #define EPIC_OPENCL_CHECK_ERROR(err)
+        #define EPIC_OPENCL_CHECK_ERROR(err)    if((err) != CL_SUCCESS) {  throw OpenCLException((err)); }
     }
 }
 
