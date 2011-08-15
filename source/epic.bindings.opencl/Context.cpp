@@ -167,6 +167,21 @@ namespace OpenCL {
         
         return Image3D(ret);
     }
+    
+    Sampler Context::createSampler(bool normalizedCoords, cl_addressing_mode addrMode, cl_filter_mode filter)
+    {
+        cl_sampler ret;
+        cl_bool normCoords = normalizedCoords? CL_TRUE : CL_FALSE;
+        cl_int err = 0;
+        
+        ret = clCreateSampler(contextHandle(), normCoords, addrMode, filter, &err);
+        
+        if(err != CL_SUCCESS) {
+            throw OpenCLException(err);
+        }
+        
+        return Sampler(ret);
+    }
 
     Program Context::createProgram(const Epic::Core::ASCIIString& sourceCode) const
     {

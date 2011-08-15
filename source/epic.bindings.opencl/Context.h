@@ -18,6 +18,7 @@
 #include <epic.bindings.opencl/Image2D.h>
 #include <epic.bindings.opencl/Image3D.h>
 #include <epic.bindings.opencl/ImageFormat.h>
+#include <epic.bindings.opencl/Sampler.h>
 
 #include <CL/opencl.h>
 
@@ -54,8 +55,8 @@ namespace Epic {
                                       size_t rowPitch = 0, size_t slicePitch = 0,
                                       void *hostPointer = nullptr);
                 
-                //Buffer createImage3D();
-                //Sampler clCreateSampler();
+                Sampler createSampler(bool normalizedCoords, cl_addressing_mode addrMode, cl_filter_mode filter);
+                
                 Program createProgram(const Epic::Core::ASCIIString& sourceCode) const;
 
             private:
