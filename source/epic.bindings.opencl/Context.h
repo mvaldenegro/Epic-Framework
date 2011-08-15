@@ -15,6 +15,9 @@
 #include <epic.bindings.opencl/Program.h>
 #include <epic.bindings.opencl/Platform.h>
 #include <epic.bindings.opencl/Buffer.h>
+#include <epic.bindings.opencl/Image2D.h>
+#include <epic.bindings.opencl/Image3D.h>
+#include <epic.bindings.opencl/ImageFormat.h>
 
 #include <CL/opencl.h>
 
@@ -39,8 +42,18 @@ namespace Epic {
                 void getInfo(cl_context_info paramName, size_t paramValueSize, void *paramValue) const;
 
                 CommandQueue createCommandQueue(const Device& device, cl_command_queue_properties properties = 0) const;
+                
                 Buffer createBuffer(cl_mem_flags flags, size_t size, void *hostPointer = nullptr) const;
-                //Buffer createImage2D();
+                
+                Image2D createImage2D(cl_mem_flags flags, const ImageFormat& format,
+                                      size_t width, size_t height, size_t rowPitch = 0,
+                                      void *hostPointer = nullptr);
+                
+                Image3D createImage3D(cl_mem_flags flags, const ImageFormat& format,
+                                      size_t width, size_t height, size_t depth,
+                                      size_t rowPitch = 0, size_t slicePitch = 0,
+                                      void *hostPointer = nullptr);
+                
                 //Buffer createImage3D();
                 //Sampler clCreateSampler();
                 Program createProgram(const Epic::Core::ASCIIString& sourceCode) const;

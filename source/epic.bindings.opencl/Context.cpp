@@ -131,6 +131,42 @@ namespace OpenCL {
         
         return Buffer(ret);
     }
+    
+    Image2D Context::createImage2D(cl_mem_flags flags, const ImageFormat& format,
+                                   size_t width, size_t height, size_t rowPitch,
+                                   void *hostPointer)
+    {
+        cl_int err = 0;
+        cl_mem ret;
+        cl_image_format fmt = format.toImageFormat();
+        
+        ret = clCreateImage2D(contextHandle(), flags, &fmt, width, height, rowPitch, hostPointer, &err);
+        
+        if(err != CL_SUCCESS) {
+            throw OpenCLException(err);
+        }
+        
+        return Image2D(ret);
+    }
+    
+    Image3D Context::createImage3D(cl_mem_flags flags, const ImageFormat& format,
+                                   size_t width, size_t height, size_t depth,
+                                   size_t rowPitch, size_t slicePitch,
+                                   void *hostPointer)
+    {
+        cl_int err = 0;
+        cl_mem ret;
+        cl_image_format fmt = format.toImageFormat();
+        
+        ret = clCreateImage3D(contextHandle(), flags, &fmt, width, height, depth,
+                              rowPitch, slicePitch, hostPointer, &err);
+        
+        if(err != CL_SUCCESS) {
+            throw OpenCLException(err);
+        }
+        
+        return Image3D(ret);
+    }
 
     Program Context::createProgram(const Epic::Core::ASCIIString& sourceCode) const
     {
