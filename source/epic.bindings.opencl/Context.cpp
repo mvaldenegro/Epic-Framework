@@ -104,6 +104,33 @@ namespace OpenCL {
         }
     }
 
+    Epic::Core::Array<ImageFormat> Context::supportedImageFormats(cl_mem_flags flags, cl_mem_object_type type) const
+    {
+        Epic::Core::Array<ImageFormat> ret;
+        cl_int err;
+        cl_uint numFormats = 0;
+
+        err = clGetSupportedImageFormats(contextHandle(), flags, type, 0, nullptr, &numFormats);
+
+        if(err != CL_SUCCESS) {
+            throw OpenCLException(err);
+        }
+
+        if(numFormats > 0) {
+            cl_image_format *formats = new cl_image_format[numFormats];
+
+            clGetSupportedImageFormats(contextHandle(), flags, type, numFormats, formats, nullptr);
+
+            for(size_t i = 0; i < numFormats; i++) {
+                ret << ImageFormat(formats[i]);
+            }
+
+            delete [] formats;
+        }
+
+        return ret;
+    }
+
     CommandQueue Context::createCommandQueue(const Device& device, cl_command_queue_properties properties) const
     {
         cl_command_queue queue;
@@ -138,7 +165,7 @@ namespace OpenCL {
     {
         cl_int err = 0;
         cl_mem ret;
-        cl_image_format fmt = format.toImageFormat();
+        cl_image_format fmt = format.format();
         
         ret = clCreateImage2D(contextHandle(), flags, &fmt, width, height, rowPitch, hostPointer, &err);
         
@@ -156,7 +183,7 @@ namespace OpenCL {
     {
         cl_int err = 0;
         cl_mem ret;
-        cl_image_format fmt = format.toImageFormat();
+        cl_image_format fmt = format.format();
         
         ret = clCreateImage3D(contextHandle(), flags, &fmt, width, height, depth,
                               rowPitch, slicePitch, hostPointer, &err);

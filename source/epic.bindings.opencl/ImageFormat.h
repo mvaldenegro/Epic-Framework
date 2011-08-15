@@ -17,17 +17,27 @@ namespace Epic {
         class ImageFormat
         {
             public:
-            
-                EPIC_INLINE ImageFormat(cl_channel_order order, cl_channel_type type)
-                : mChannelOrder(order), mChannelType(type)
+
+                EPIC_INLINE ImageFormat()
+                : mImageFormat(cl_image_format())
                 {
-                
                 }
             
-                EPIC_INLINE ImageFormat(const ImageFormat& format)
-                : mChannelOrder(format.channelOrder()), mChannelType(format.channelType())
+                EPIC_INLINE ImageFormat(cl_image_format format)
+                : mImageFormat(format)
                 {
-                
+                }
+
+                EPIC_INLINE ImageFormat(cl_channel_order order, cl_channel_type type)
+                : mImageFormat(cl_image_format())
+                {
+                    mImageFormat.image_channel_order = order;
+                    mImageFormat.image_channel_data_type = type;
+                }
+            
+                EPIC_INLINE ImageFormat(const ImageFormat& other)
+                : mImageFormat(other.format())
+                {
                 }
             
                 EPIC_INLINE ~ImageFormat()
@@ -36,27 +46,21 @@ namespace Epic {
                 
                 EPIC_INLINE cl_channel_order channelOrder() const
                 {
-                    return mChannelOrder;
+                    return mImageFormat.image_channel_order;
                 }
                 
                 EPIC_INLINE cl_channel_type channelType() const
                 {
-                    return mChannelType;
+                    return mImageFormat.image_channel_data_type;
                 }
                 
-                EPIC_INLINE cl_image_format toImageFormat() const
+                EPIC_INLINE cl_image_format format() const
                 {
-                    cl_image_format ret;
-                    
-                    ret.image_channel_order = channelOrder();
-                    ret.image_channel_data_type = channelType();
-                    
-                    return ret;
+                    return mImageFormat;
                 }
                 
             private:
-                cl_channel_order mChannelOrder;
-                cl_channel_type mChannelType;
+                cl_image_format mImageFormat;
         };
     }
 }

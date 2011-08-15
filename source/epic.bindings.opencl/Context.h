@@ -42,6 +42,8 @@ namespace Epic {
                 size_t getInfoSize(cl_context_info paramName) const;
                 void getInfo(cl_context_info paramName, size_t paramValueSize, void *paramValue) const;
 
+                Epic::Core::Array<ImageFormat> supportedImageFormats(cl_mem_flags flags, cl_mem_object_type type) const;
+
                 CommandQueue createCommandQueue(const Device& device, cl_command_queue_properties properties = 0) const;
                 
                 Buffer createBuffer(cl_mem_flags flags, size_t size, void *hostPointer = nullptr) const;
