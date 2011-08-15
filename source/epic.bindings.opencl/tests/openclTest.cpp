@@ -9,8 +9,9 @@
 #include <epic.bindings.opencl/Platform.h>
 #include <epic.bindings.opencl/Device.h>
 #include <epic.bindings.opencl/Context.h>
-
-#include "epic.bindings.opencl/OpenCLException.h"
+#include <epic.bindings.opencl/Program.h>
+#include <epic.bindings.opencl/Kernel.h>
+#include <epic.bindings.opencl/Buffer.h>
 
 using namespace std;
 
@@ -19,23 +20,21 @@ using Epic::Core::Array;
 using Epic::OpenCL::Platform;
 using Epic::OpenCL::Device;
 using Epic::OpenCL::Context;
+using Epic::OpenCL::Program;
+using Epic::OpenCL::Kernel;
+using Epic::OpenCL::Buffer;
 
-/*
- *
- */
+const char *kernel = "kernel void sum(global int* a, global int *b, global int *out)\n"
+"{\n"
+"    for(int i = 0; i < 5; i++) {\n"
+"        out[i] = a[i] + b[i];\n"
+"    }\n"
+"}";
+
 int main(int argc, char** argv)
 {
     Platform platform = Platform::getPlatformIDs().at(0);
-
     Array<Device> devices = platform.devices(CL_DEVICE_TYPE_ALL);
-
-    cout << "How many devices? " << devices.count() << endl;
-
-    for(size_t i = 0; i < devices.count(); i++) {
-        cout << "Device " << i << " = " << devices[i].name() << endl;
-        cout << "Device ID " << devices[i].deviceID() << endl;
-    }
-
     Context context(platform, devices);
 
     cout << "profile: " << platform.profile() << endl;
@@ -44,13 +43,16 @@ int main(int argc, char** argv)
     cout << "vendor: " << platform.vendor() << endl;
     cout << "extensions: " << platform.extensions() << endl;
 
-    Array<Device> devises = context.devices();
-
-    for(size_t i = 0; i < devises.count(); i++) {
-        cout << "Device " << i << " = " << devises[i].name() << endl;
-        cout << "Device ID " << devises[i].deviceID() << endl;
-    }
-
+    Program program = context.createProgram(kernel);
+    program.build();
+    
+    Kernel kernel = program.createKernel("sum");
+    
+    cout << "kernel name: " << kernel.functionName() << endl;
+    cout << "kernel num args: " << kernel.numberOfArguments() << endl;
+    
+    Buffer buf = context.createBuffer(CL_MEM_READ_ONLY, 10);
+  
     return 0;
 }
 
