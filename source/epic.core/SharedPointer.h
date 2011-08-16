@@ -107,7 +107,7 @@ namespace Epic {
 
                 inline T& operator*()
                 {
-                    return *(this->sharedData.pointer);
+                    return *(this->sharedData->pointer);
                 }
 
                 /*! Dereference operator.
