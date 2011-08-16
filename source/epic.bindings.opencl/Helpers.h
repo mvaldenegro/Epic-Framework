@@ -13,6 +13,7 @@
 #include <epic.core/Array.h>
 
 #include <epic.bindings.opencl/Device.h>
+#include <epic.bindings.opencl/Event.h>
 
 namespace Epic {
     namespace OpenCL {
@@ -34,6 +35,17 @@ namespace Epic {
 
             for(size_t i = 0; i < length; i++) {
                 ret << Device(devs[i]);
+            }
+
+            return ret;
+        }
+
+        static inline Epic::Core::Array<cl_event> eventArrayToCLEventArray(const Epic::Core::Array<Event>& events)
+        {
+            Epic::Core::Array<cl_event> ret;
+
+            for(size_t i = 0; i < events.count(); i++) {
+                ret << events[i].eventHandle();
             }
 
             return ret;
