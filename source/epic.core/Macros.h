@@ -25,5 +25,7 @@
 
 #define EPIC_NO_RETURN                      __attribute__((__noreturn__))
 
+#define EPIC_NON_COPYABLE(clazz)            clazz(const clazz& copy)
+
 #endif	/* EPIC_CORE_MACROS_H */
 
