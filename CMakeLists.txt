@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.6)
 
-set(CMAKE_CXX_FLAGS "-Wall -g3 -pedantic -Wno-long-long")
+set(CMAKE_CXX_FLAGS "-Wall -g3 -pedantic -Wno-long-long -std=c++0x")
 
 include_directories(source)
 
@@ -24,6 +24,10 @@ add_library(epic.opencl SHARED ${epicOpenCLSources})
 
 add_executable(openclTest source/epic.bindings.opencl/tests/openclTest.cpp)
 target_link_libraries(openclTest epic.core epic.opencl OpenCL)
+
+file(GLOB epicOpenGLSources "source/epic.bindings.opengl/*.cpp")
+add_library(epic.opengl SHARED ${epicOpenGLSources})
+
 
 add_executable(vector2Test test/epic.math/vector2Test.cpp)
 

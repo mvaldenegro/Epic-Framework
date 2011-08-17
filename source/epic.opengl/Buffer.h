@@ -8,7 +8,7 @@
 #ifndef EPIC_OPENGL_BUFFER_H_
 #define EPIC_OPENGL_BUFFER_H_
 
-#include <epic.bindings.opengl/OpenGL.h>
+#include <epic.opengl/OpenGL.h>
 #include <epic.core/Core.h>
 
 namespace Epic {
