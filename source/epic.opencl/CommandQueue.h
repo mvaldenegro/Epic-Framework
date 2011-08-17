@@ -13,12 +13,12 @@
 
 #include <CL/opencl.h>
 
-#include <epic.bindings.opencl/Buffer.h>
-#include <epic.bindings.opencl/Kernel.h>
-#include <epic.bindings.opencl/NDRange.h>
-#include <epic.bindings.opencl/Event.h>
-#include <epic.bindings.opencl/Image2D.h>
-#include <epic.bindings.opencl/Image3D.h>
+#include <epic.opencl/Buffer.h>
+#include <epic.opencl/Kernel.h>
+#include <epic.opencl/NDRange.h>
+#include <epic.opencl/Event.h>
+#include <epic.opencl/Image2D.h>
+#include <epic.opencl/Image3D.h>
 
 namespace Epic {
     namespace OpenCL {

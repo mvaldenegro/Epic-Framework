@@ -13,7 +13,7 @@
 #include <epic.core/Array.h>
 #include <epic.core/ASCIIString.h>
 
-#include <epic.bindings.opencl/Device.h>
+#include <epic.opencl/Device.h>
 
 namespace Epic {
     namespace OpenCL {

@@ -14,8 +14,8 @@
 
 #include <CL/opencl.h>
 
-#include <epic.bindings.opencl/Device.h>
-#include <epic.bindings.opencl/Kernel.h>
+#include <epic.opencl/Device.h>
+#include <epic.opencl/Kernel.h>
 
 namespace Epic {
     namespace OpenCL {

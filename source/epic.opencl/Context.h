@@ -10,15 +10,15 @@
 
 #include <epic.core/Array.h>
 
-#include <epic.bindings.opencl/Device.h>
-#include <epic.bindings.opencl/CommandQueue.h>
-#include <epic.bindings.opencl/Program.h>
-#include <epic.bindings.opencl/Platform.h>
-#include <epic.bindings.opencl/Buffer.h>
-#include <epic.bindings.opencl/Image2D.h>
-#include <epic.bindings.opencl/Image3D.h>
-#include <epic.bindings.opencl/ImageFormat.h>
-#include <epic.bindings.opencl/Sampler.h>
+#include <epic.opencl/Device.h>
+#include <epic.opencl/CommandQueue.h>
+#include <epic.opencl/Program.h>
+#include <epic.opencl/Platform.h>
+#include <epic.opencl/Buffer.h>
+#include <epic.opencl/Image2D.h>
+#include <epic.opencl/Image3D.h>
+#include <epic.opencl/ImageFormat.h>
+#include <epic.opencl/Sampler.h>
 
 #include <CL/opencl.h>
 

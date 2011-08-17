@@ -19,13 +19,13 @@ add_executable(imageTest source/epic.image/tests/imageTest.cpp)
 target_link_libraries(imageTest epic.image)
 
 
-file(GLOB epicOpenCLSources "source/epic.bindings.opencl/*.cpp")
+file(GLOB epicOpenCLSources "source/epic.opencl/*.cpp")
 add_library(epic.opencl SHARED ${epicOpenCLSources})
 
-add_executable(openclTest source/epic.bindings.opencl/tests/openclTest.cpp)
+add_executable(openclTest source/epic.opencl/tests/openclTest.cpp)
 target_link_libraries(openclTest epic.core epic.opencl OpenCL)
 
-file(GLOB epicOpenGLSources "source/epic.bindings.opengl/*.cpp")
+file(GLOB epicOpenGLSources "source/epic.opengl/*.cpp")
 add_library(epic.opengl SHARED ${epicOpenGLSources})
 
 

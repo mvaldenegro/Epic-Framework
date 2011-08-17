@@ -6,12 +6,12 @@
  */
 
 #include <iostream>
-#include <epic.bindings.opencl/Platform.h>
-#include <epic.bindings.opencl/Device.h>
-#include <epic.bindings.opencl/Context.h>
-#include <epic.bindings.opencl/Program.h>
-#include <epic.bindings.opencl/Kernel.h>
-#include <epic.bindings.opencl/Buffer.h>
+#include <epic.opencl/Platform.h>
+#include <epic.opencl/Device.h>
+#include <epic.opencl/Context.h>
+#include <epic.opencl/Program.h>
+#include <epic.opencl/Kernel.h>
+#include <epic.opencl/Buffer.h>
 
 using namespace std;
 
