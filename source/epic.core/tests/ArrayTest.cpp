@@ -65,6 +65,12 @@ int main(int argc, char** argv)
     cout << "Empty array size " << nil.count() << endl;
     cout << "Empty array empty? " << nil.isEmpty() << endl;
 
+    cout << "Iterator test" << endl;
+
+    for(Epic::Core::Array<int>::Iterator it = a.begin(); it != a.end(); it++) {
+        cout << *it << endl;
+    }
+
     return 0;
 }
 

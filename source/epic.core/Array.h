@@ -97,12 +97,16 @@ namespace Epic {
 
                 inline size_t capacity() const
                 {
+                    if(arrayData.isNull()) {
+                        return 0;
+                    }
+
                     return this->arrayData->capacity;
                 }
 
                 inline bool isShared() const
                 {
-                    return this->arrayData.referenceCount() > 1;
+                    return arrayData.isShared();
                 }
 
                 inline bool isEmpty() const
@@ -251,15 +255,88 @@ namespace Epic {
                 class Iterator
                 {
                     public:
+                        Iterator(Array<T> *a, size_t idx = 0)
+                        : index(idx), array(a)
+                        {
+                        }
+
+                        Iterator(Iterator&& other)
+                        : index(other.index), array(other.array)
+                        {
+                            other.index = 0;
+                            other.array = nullptr;
+                        }
+
+                        Iterator(const Iterator& other)
+                        : index(other.index), array(other.array)
+                        {
+                        }
+
+                        Iterator& operator=(const Iterator& other)
+                        {
+                            index = other.index;
+                            array = other.array;
+
+                            return *this;
+                        }
+
+                        bool operator==(const Iterator& other) const
+                        {
+                            return (array == other.array) && (index == other.index);
+                        }
+
+                        bool operator!=(const Iterator& other) const
+                        {
+                            return (array == other.array) && (index != other.index);
+                        }
+
+                        Iterator& operator++()
+                        {
+                            index++;
+
+                            return *this;
+                        }
+
+                        Iterator operator++(int)
+                        {
+                            Iterator ret(*this);
+
+                            index++;
+
+                            return ret;
+                        }
+
+                        Iterator& operator--()
+                        {
+                            index--;
+
+                            return *this;
+                        }
 
                         T& operator*()
                         {
                             return array->at(index);
                         }
+
+                        const T& operator*() const
+                        {
+                            return array->at(index);
+                        }
+
                     private:
                         size_t index;
                         Array<T> *array;
                 };
+
+                Iterator begin()
+                {
+                    return Iterator(this);
+                }
+
+                Iterator end()
+                {
+                    return Iterator(this, count());
+                }
         };
     }
 }
