@@ -11,6 +11,7 @@
 #include <epic.core/Core.h>
 #include <epic.core/Algorithms.h>
 #include <epic.core/SharedPointer.h>
+#include <epic.core/STLCompatibility.h>
 
 namespace Epic {
     namespace Core {
@@ -254,6 +255,13 @@ namespace Epic {
                 class Iterator
                 {
                     public:
+                        /* STL compatibility. */
+                        typedef std::random_access_iterator_tag  iterator_category;
+                        typedef T value_type;
+                        typedef size_t difference_type;
+                        typedef T& reference;
+                        typedef T* pointer;
+
                         Iterator(Array<T> *a, size_t idx = 0)
                         : index(idx), array(a)
                         {
@@ -365,6 +373,11 @@ namespace Epic {
                             return *this;
                         }
 
+                        int operator-(const Iterator& j) const
+                        {
+                            return index - j.index;
+                        }
+
                         T& operator*()
                         {
                             return array->at(index);
@@ -390,6 +403,8 @@ namespace Epic {
                         Array<T> *array;
                 };
 
+                typedef Iterator iterator;
+
                 Iterator begin()
                 {
                     return Iterator(this);
@@ -403,6 +418,13 @@ namespace Epic {
                 class ConstIterator
                 {
                     public:
+                        /* STL compatibility. */
+                        typedef std::random_access_iterator_tag  iterator_category;
+                        typedef T value_type;
+                        typedef size_t difference_type;
+                        typedef T& reference;
+                        typedef T* pointer;
+
                         ConstIterator(const Array<T> *a, size_t idx = 0)
                         : index(idx), array(a)
                         {
@@ -514,6 +536,11 @@ namespace Epic {
                             return *this;
                         }
 
+                        int operator-(const ConstIterator& j) const
+                        {
+                            return index - j.index;
+                        }
+
                         const T& operator*() const
                         {
                             return array->at(index);
@@ -528,6 +555,8 @@ namespace Epic {
                         size_t index;
                         const Array<T> *array;
                 };
+
+                typedef ConstIterator const_iterator;
 
                 ConstIterator begin() const
                 {
