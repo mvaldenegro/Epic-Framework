@@ -18,7 +18,6 @@ namespace Epic {
         /*! Array container.
          *
          * This class represents an Array.
-         * TODO: Implement detach()
          */
 
         template<typename T>
@@ -290,6 +289,31 @@ namespace Epic {
                             return (array == other.array) && (index != other.index);
                         }
 
+                        bool operator<(const Iterator& other) const
+                        {
+                            return (array == other.array) && (index < other.index);
+                        }
+
+                        bool operator<=(const Iterator& other) const
+                        {
+                            return (array == other.array) && (index <= other.index);
+                        }
+
+                        bool operator>(const Iterator& other) const
+                        {
+                            return (array == other.array) && (index > other.index);
+                        }
+
+                        bool operator>=(const Iterator& other) const
+                        {
+                            return (array == other.array) && (index >= other.index);
+                        }
+
+                        Iterator operator+(int i) const
+                        {
+                            return Iterator(array, index + i);
+                        }
+
                         Iterator& operator++()
                         {
                             index++;
@@ -306,9 +330,37 @@ namespace Epic {
                             return ret;
                         }
 
+                        Iterator& operator+=(int i)
+                        {
+                            index += i;
+
+                            return *this;
+                        }
+
+                        Iterator operator-(int i) const
+                        {
+                            return Iterator(array, index - i);
+                        }
+
                         Iterator& operator--()
                         {
                             index--;
+
+                            return *this;
+                        }
+
+                        Iterator operator--(int)
+                        {
+                            Iterator ret(*this);
+
+                            index--;
+
+                            return ret;
+                        }
+
+                        Iterator& operator-=(int i)
+                        {
+                            index -= i;
 
                             return *this;
                         }
@@ -321,6 +373,16 @@ namespace Epic {
                         const T& operator*() const
                         {
                             return array->at(index);
+                        }
+
+                        T* operator->()
+                        {
+                            return array->data() + index;
+                        }
+
+                        const T* operator->() const
+                        {
+                            return array->data() + index;
                         }
 
                     private:
@@ -336,6 +398,155 @@ namespace Epic {
                 Iterator end()
                 {
                     return Iterator(this, count());
+                }
+
+                class ConstIterator
+                {
+                    public:
+                        ConstIterator(const Array<T> *a, size_t idx = 0)
+                        : index(idx), array(a)
+                        {
+                        }
+
+                        ConstIterator(ConstIterator&& other)
+                        : index(other.index), array(other.array)
+                        {
+                            other.index = 0;
+                            other.array = nullptr;
+                        }
+
+                        ConstIterator(const ConstIterator& other)
+                        : index(other.index), array(other.array)
+                        {
+                        }
+
+                        ConstIterator& operator=(const ConstIterator& other)
+                        {
+                            index = other.index;
+                            array = other.array;
+
+                            return *this;
+                        }
+
+                        bool operator==(const ConstIterator& other) const
+                        {
+                            return (array == other.array) && (index == other.index);
+                        }
+
+                        bool operator!=(const ConstIterator& other) const
+                        {
+                            return (array == other.array) && (index != other.index);
+                        }
+
+                        bool operator<(const ConstIterator& other) const
+                        {
+                            return (array == other.array) && (index < other.index);
+                        }
+
+                        bool operator<=(const ConstIterator& other) const
+                        {
+                            return (array == other.array) && (index <= other.index);
+                        }
+
+                        bool operator>(const ConstIterator& other) const
+                        {
+                            return (array == other.array) && (index > other.index);
+                        }
+
+                        bool operator>=(const ConstIterator& other) const
+                        {
+                            return (array == other.array) && (index >= other.index);
+                        }
+
+                        ConstIterator operator+(int i) const
+                        {
+                            return ConstIterator(array, index + i);
+                        }
+
+                        ConstIterator& operator++()
+                        {
+                            index++;
+
+                            return *this;
+                        }
+
+                        ConstIterator operator++(int)
+                        {
+                            ConstIterator ret(*this);
+
+                            index++;
+
+                            return ret;
+                        }
+
+                        ConstIterator& operator+=(int i)
+                        {
+                            index += i;
+
+                            return *this;
+                        }
+
+                        ConstIterator operator-(int i) const
+                        {
+                            return Iterator(array, index - i);
+                        }
+
+                        ConstIterator& operator--()
+                        {
+                            index--;
+
+                            return *this;
+                        }
+
+                        ConstIterator operator--(int)
+                        {
+                            Iterator ret(*this);
+
+                            index--;
+
+                            return ret;
+                        }
+
+                        ConstIterator& operator-=(int i)
+                        {
+                            index -= i;
+
+                            return *this;
+                        }
+
+                        const T& operator*() const
+                        {
+                            return array->at(index);
+                        }
+
+                        const T* operator->() const
+                        {
+                            return array->data() + index;
+                        }
+
+                    private:
+                        size_t index;
+                        const Array<T> *array;
+                };
+
+                ConstIterator begin() const
+                {
+                    return ConstIterator(this);
+                }
+
+                ConstIterator end() const
+                {
+                    return ConstIterator(this, count());
+                }
+
+                ConstIterator constBegin() const
+                {
+                    return ConstIterator(this);
+                }
+
+                ConstIterator constEnd() const
+                {
+                    return ConstIterator(this, count());
                 }
         };
     }
