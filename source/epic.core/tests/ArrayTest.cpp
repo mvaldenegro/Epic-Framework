@@ -7,8 +7,11 @@
 
 #include <epic.core/Array.h>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
+
+using Epic::Core::Array;
 
 template<typename T>
 void print(const Epic::Core::Array<T>& array)
@@ -67,9 +70,21 @@ int main(int argc, char** argv)
 
     cout << "Iterator test" << endl;
 
-    for(Epic::Core::Array<int>::Iterator it = a.begin(); it != a.end(); it++) {
+    for(Epic::Core::Array<int>::Iterator it = a.begin(); it < a.end(); it += 2) {
         cout << *it << endl;
     }
+
+    cout << "Const iterator test" << endl;
+
+    for(Epic::Core::Array<int>::ConstIterator it = a.constBegin(); it != a.constEnd(); it++) {
+        cout << *it << endl;
+    }
+
+    cout << "Test std::find" << endl;
+
+    Array<int>::Iterator ret = std::find(a.begin(), a.end(), 2);
+
+    cout << *ret << endl;
 
     return 0;
 }
