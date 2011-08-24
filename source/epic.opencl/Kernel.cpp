@@ -30,6 +30,22 @@ namespace OpenCL {
     {
     }
     
+    void Kernel::setArgument(cl_uint argumentIndex, const Buffer& buffer)
+    {
+        cl_mem buf = buffer.bufferHandle();
+
+        setArgument(argumentIndex, sizeof(cl_mem), &buf);
+    }
+
+    void Kernel::setArgument(cl_uint argumentIndex, size_t argumentSize, const void *argumentValue)
+    {
+        cl_int err = 0;
+
+        err = clSetKernelArg(kernelHandle(), argumentIndex, argumentSize, argumentValue);
+
+        EPIC_OPENCL_CHECK_ERROR(err)
+    }
+
     size_t Kernel::getInfoSize(cl_kernel_info paramName) const
     {
         size_t ret;

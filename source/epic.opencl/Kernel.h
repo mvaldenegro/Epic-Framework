@@ -13,6 +13,8 @@
 
 #include <CL/opencl.h>
 
+#include <epic.opencl/Buffer.h>
+
 namespace Epic {
     namespace OpenCL {
         class Kernel
@@ -38,6 +40,9 @@ namespace Epic {
                     return getInfoUInt(CL_KERNEL_NUM_ARGS);
                 }
                 
+                void setArgument(cl_uint argumentIndex, const Buffer& buffer);
+                void setArgument(cl_uint argumentIndex, size_t argumentSize, const void *argumentValue);
+
                 EPIC_INLINE Epic::Core::ASCIIString getInfoString(cl_kernel_info paramName) const
                 {
                     size_t length = getInfoSize(paramName);
