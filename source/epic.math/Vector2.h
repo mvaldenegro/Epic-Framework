@@ -222,7 +222,8 @@ namespace Epic {
                  */
                 bool fuzzyEquals(const Vector2<Scalar>& other, Scalar epsilon) const
                 {
-                    return Math::fuzzyEquals(x(), other.x(), epsilon) && Math::fuzzyEquals(y(), other.y(), epsilon);
+                    return Epic::Math::fuzzyEquals(x(), other.x(), epsilon) &&
+                           Epic::Math::fuzzyEquals(y(), other.y(), epsilon);
                 }
 
                 /*! Fuzzy no equality.
