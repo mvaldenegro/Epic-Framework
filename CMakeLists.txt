@@ -7,17 +7,19 @@ include_directories(source)
 file(GLOB epicCoreSources "source/epic.core/*.cpp")
 add_library(epic.core SHARED ${epicCoreSources})
 
-add_executable(stringTest source/epic.core/tests/StringTest.cpp)
-target_link_libraries(stringTest epic.core)
-
-add_executable(arrayTest source/epic.core/tests/ArrayTest.cpp)
+file(GLOB epicCoreTests "source/epic.core/tests/*.cpp")
+foreach(test ${epicCoreTests})
+	get_filename_component(testName ${test} NAME_WE)
+	message(${testName})
+	add_executable(${testName} ${test})
+	target_link_libraries(${testName} epic.core)		
+endforeach()
 
 file(GLOB epicImageSources "source/epic.image/*.cpp")
 add_library(epic.image SHARED ${epicImageSources})
 
 add_executable(imageTest source/epic.image/tests/imageTest.cpp)
 target_link_libraries(imageTest epic.image)
-
 
 file(GLOB epicOpenCLSources "source/epic.opencl/*.cpp")
 add_library(epic.opencl SHARED ${epicOpenCLSources})
@@ -28,6 +30,6 @@ target_link_libraries(openclTest epic.core epic.opencl OpenCL)
 file(GLOB epicOpenGLSources "source/epic.opengl/*.cpp")
 add_library(epic.opengl SHARED ${epicOpenGLSources})
 
-
 add_executable(vector2Test test/epic.math/vector2Test.cpp)
+add_executable(matrixTest source/epic.math/tests/matrixTests.cpp)
 
