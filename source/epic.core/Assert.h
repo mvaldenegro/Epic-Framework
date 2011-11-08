@@ -10,10 +10,14 @@
 
 #include <epic.core/Core.h>
 
+#include <iostream>
+
 namespace Epic {
     namespace Core {
         inline void EPIC_NO_RETURN assert(const char *conditionText, const char *file, int line)
         {
+            std::cerr << "Assertion " << conditionText << " failed at " << file << ":" << line << std::endl;
+            std::exit(-1);
         }
 
         inline void nothing()
