@@ -348,7 +348,7 @@ namespace Epic {
                 {
                     return Vector4<Scalar>(x() - other.x(),
                                            y() - other.y(),
-                                           z() - other.z()
+                                           z() - other.z(),
                                            w() - other.w());
                 }
 
