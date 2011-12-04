@@ -63,6 +63,11 @@ namespace Epic {
                     attach(other);
                 }
 
+                SharedPointer(SharedPointer<T>&& other) : sharedData(other.sharedData)
+                {
+                    other.sharedData = nullptr;
+                }
+
                 /*! Destructor.
                  *
                  * Destroys this shared pointer. If the reference count of the shared pointer is zero,

@@ -56,6 +56,15 @@ namespace Epic {
                 {
                 }
 
+                /*! Constructor. Initializes this array with a preallocated internal array.
+                 *  Both the capacity and count of this array are set to \a size.
+                 */
+
+                explicit Array(size_t size) : arrayData(new ArrayInternalData(new T[size], size, size))
+                {
+
+                }
+
                 /*! Constructor. Initializes this array instance by copying the data from a c-style array.
                  */
                 Array(const T* carray, size_t len) : arrayData(new ArrayInternalData(new T[len], len, len))
@@ -67,6 +76,11 @@ namespace Epic {
                  */
                 Array(const Array<T>& other) : arrayData(other.arrayData)
                 {
+                }
+
+                Array(Array<T>&& other) : arrayData(other.arrayData)
+                {
+                    other.arrayData = nullptr;
                 }
 
                 /*! Destructor.
@@ -116,13 +130,17 @@ namespace Epic {
 
                 T& at(size_t i)
                 {
+                    EPIC_HARD_ASSERT(i < count());
+
                     detach();
                     
                     return this->arrayData->data[i];
                 }
 
                 const T& at(size_t i) const
-                {   
+                {
+                    EPIC_HARD_ASSERT(i < count());
+
                     return this->arrayData->data[i];
                 }
 
@@ -135,6 +153,17 @@ namespace Epic {
                 {
                     return at(i);
                 }
+
+                T& operator()(size_t i)
+                {
+                    return at(i);
+                }
+
+                const T& operator()(size_t i) const
+                {
+                    return at(i);
+                }
+
 
                 bool operator==(const Array<T>& other) const
                 {
