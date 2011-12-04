@@ -12,8 +12,11 @@
 #include <epic.math/Vector3.h>
 #include <epic.math/Vector4.h>
 
+#include <epic.math/Vector.h>
+
 namespace Epic {
     namespace Math {
+
         template<typename T>
         T dot(const Vector2<T>& a, const Vector2<T>& b)
         {
@@ -30,6 +33,19 @@ namespace Epic {
         T dot(const Vector4<T>& a, const Vector4<T>& b)
         {
             return a.x() * b.x() + a.y() + b.y() + a.z() * b.z() + a.w() * b.w();
+        }
+
+        template<typename Scalar>
+        Scalar dot(const Vector<Scalar>& a, const Vector<Scalar>& b)
+        {
+            EPIC_HARD_ASSERT(a.count() == b.count());
+            Scalar ret = Scalar(0.0);
+
+            for(size_t i = 0; i < a.count(); i++) {
+                ret += a(i) * b(i);
+            }
+
+            return ret;
         }
 
         template<typename T>
@@ -93,8 +109,8 @@ namespace Epic {
         {
             return incident - 2.0 * normal * dot(normal, incident);
         }
-    };
-};
+    }
+}
 
 #endif	/* EPIC_MATH_VECTORMATH_H */
 
