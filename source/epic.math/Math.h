@@ -13,6 +13,21 @@
 namespace Epic {
     namespace Math {
 
+        const double pi = 3.14159265358979323846;
+        const double e  = 2.71828182845904523536;
+
+        template<typename T>
+        T power(T x, T y)
+        {
+            return std::pow(x, y);
+        }
+
+        template<typename T>
+        T exponential(T x)
+        {
+            return power(static_cast<T>(e), x);
+        }
+
         template<typename T>
         T squareRoot(T x)
         {
@@ -46,7 +61,7 @@ namespace Epic {
         template<typename T>
         T absoluteValue(T x)
         {
-            return x >= 0.0 ? x : -x;
+            return (x >= 0.0) ? x : -x;
         }
 
         template<typename T>
@@ -64,7 +79,7 @@ namespace Epic {
         template<typename T>
         T linearInterpolation(T weight, T a, T b)
         {
-            return a * weight + (1.0 - weight) * b;
+            return a * weight + (static_cast<T>(1.0) - weight) * b;
         }
 
         template<typename T>
