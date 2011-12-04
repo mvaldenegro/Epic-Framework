@@ -11,6 +11,7 @@
 #include <epic.core/Core.h>
 
 #include <iostream>
+#include <cstdlib>
 
 namespace Epic {
     namespace Core {
