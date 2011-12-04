@@ -226,8 +226,8 @@ namespace Epic {
                 T *pointer;
 
         };
-    };
-};
+    }
+}
 
 #endif	/* EPIC_CORE_POINTER_H */
 
