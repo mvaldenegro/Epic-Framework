@@ -37,7 +37,7 @@ namespace Epic {
         template<typename T>
         T inverseSquareRoot(T x)
         {
-            return 1.0 / squareRoot(x);
+            return static_cast<T>(1.0) / squareRoot(x);
         }
 
         template<typename T, typename Integer>
@@ -49,7 +49,7 @@ namespace Epic {
         template<typename T, typename Integer>
         Integer ceiling(T x)
         {
-            return floor(x) + 1;
+            return floor(x) + static_cast<Integer>(1);
         }
 
         template<typename T>
@@ -61,7 +61,7 @@ namespace Epic {
         template<typename T>
         T absoluteValue(T x)
         {
-            return (x >= 0.0) ? x : -x;
+            return (x >= static_cast<T>(0.0)) ? x : -x;
         }
 
         template<typename T>
