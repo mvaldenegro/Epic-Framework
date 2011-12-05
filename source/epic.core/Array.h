@@ -12,6 +12,9 @@
 #include <epic.core/Algorithms.h>
 #include <epic.core/SharedPointer.h>
 #include <epic.core/STLCompatibility.h>
+#include <epic.core/BoundsCheck.h>
+
+#include <epic.core/ArraySlice.h>
 
 namespace Epic {
     namespace Core {
@@ -130,7 +133,7 @@ namespace Epic {
 
                 T& at(size_t i)
                 {
-                    EPIC_HARD_ASSERT(i < count());
+                    EPIC_BOUNDS_CHECK(i, count());
 
                     detach();
                     
@@ -139,7 +142,7 @@ namespace Epic {
 
                 const T& at(size_t i) const
                 {
-                    EPIC_HARD_ASSERT(i < count());
+                    EPIC_BOUNDS_CHECK(i, count());
 
                     return this->arrayData->data[i];
                 }
@@ -163,7 +166,6 @@ namespace Epic {
                 {
                     return at(i);
                 }
-
 
                 bool operator==(const Array<T>& other) const
                 {
@@ -605,6 +607,11 @@ namespace Epic {
                 ConstIterator constEnd() const
                 {
                     return ConstIterator(this, count());
+                }
+
+                ArraySlice<T> slice(size_t start, size_t end)
+                {
+                    return ArraySlice<T>(this, start, end);
                 }
         };
     }
