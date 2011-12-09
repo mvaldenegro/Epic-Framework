@@ -25,21 +25,28 @@ namespace Epic {
                 {
                 }
 
+                EPIC_INLINE size_t count() const
+                {
+                    return length;
+                }
+
                 T& operator[](size_t idx)
                 {
-                    EPIC_HARD_ASSERT(idx < length);
+                    EPIC_BOUNDS_CHECK(idx, length);
 
                     return targetArray->at(startIndex + idx);
                 }
 
                 const T& operator[](size_t idx) const
                 {
+                    EPIC_BOUNDS_CHECK(idx, length);
+
                     return targetArray->at(startIndex + idx);
                 }
 
             private:
                 ArraySlice(Array<T> *target, size_t start, size_t end)
-                : targetArray(target), startIndex(start), endIndex(end)
+                : targetArray(target), startIndex(start), endIndex(end), length(end - start)
                 {
                 }
 
