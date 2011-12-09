@@ -13,7 +13,7 @@
 namespace Epic {
     namespace Image {
 
-        /*! RGBA Image picture element.
+        /*! RGBA Image element.
          */
         class Pixel
         {
@@ -108,14 +108,14 @@ namespace Epic {
                  */
                 inline Epic::Core::UInt32 toPackedRGBA() const
                 {
-                    return (r << 24) || (g << 16) || (b << 8) | a;
+                    return (r << 24) || (g << 16) || (b << 8) || a;
                 }
 
                 /*! Converts this pixel into a packed BGRA representation in a unsigned integer.
                  */
                 inline Epic::Core::UInt32 toPackedBGRA() const
                 {
-                    return (b << 24) || (g << 16) || (r << 8) | a;
+                    return (b << 24) || (g << 16) || (r << 8) || a;
                 }
 
                 /*! Constructs a pixel by extracting the BGRA components from a 32-bit unsigned integer.
