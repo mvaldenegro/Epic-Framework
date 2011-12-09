@@ -12,6 +12,7 @@
 using namespace std;
 
 using Epic::Core::Array;
+using Epic::Core::ArraySlice;
 
 template<typename T>
 void print(const Epic::Core::Array<T>& array)
@@ -85,6 +86,17 @@ int main(int argc, char** argv)
     Array<int>::Iterator ret = std::find(a.begin(), a.end(), 2);
 
     cout << *ret << endl;
+
+    cout << "Array slicing" << endl;
+
+    ArraySlice<int> s = a.slice(1, 2);
+
+    cout << "s[0] = " << s[0] << endl;
+    cout << "s[1] = " << s[1] << endl;
+
+    cout << "This should trigger a bounds check error" << endl;
+
+    a[10] = 1;
 
     return 0;
 }
