@@ -26,7 +26,7 @@ namespace Epic {
 
                 /*! Destructor.
                  */
-                ~RGB8Image();
+                virtual ~RGB8Image();
 
                 size_t bytesPerPixel() const;
                 Pixel pixel(size_t row, size_t column) const;
