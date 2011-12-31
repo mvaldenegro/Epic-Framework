@@ -43,6 +43,18 @@ namespace Epic {
                 void setArgument(cl_uint argumentIndex, const Buffer& buffer);
                 void setArgument(cl_uint argumentIndex, size_t argumentSize, const void *argumentValue);
 
+                void setArgument(cl_uint argumentIndex, cl_char value);
+                void setArgument(cl_uint argumentIndex, cl_uchar value);
+                void setArgument(cl_uint argumentIndex, cl_short value);
+                void setArgument(cl_uint argumentIndex, cl_ushort value);
+                void setArgument(cl_uint argumentIndex, cl_int value);
+                void setArgument(cl_uint argumentIndex, cl_uint value);
+                void setArgument(cl_uint argumentIndex, cl_long value);
+                void setArgument(cl_uint argumentIndex, cl_ulong value);
+
+                void setArgument(cl_uint argumentIndex, cl_float value);
+                void setArgument(cl_uint argumentIndex, cl_double value);
+
                 EPIC_INLINE Epic::Core::ASCIIString getInfoString(cl_kernel_info paramName) const
                 {
                     size_t length = getInfoSize(paramName);
