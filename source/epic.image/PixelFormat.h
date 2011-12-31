@@ -24,9 +24,7 @@ namespace Epic {
                     RGB8,   /* Three channels,  8 bits per channel. */
                     RGBA8,  /* Four channels,  8 bits per channel. */
                     BGR8,   /* Three channels,  8 bits per channel. */
-                    BGRA8,  /* Four channels,  8 bits per channel. */
-
-                    RGB565
+                    BGRA8  /* Four channels,  8 bits per channel. */
                 };
 
                 inline PixelFormat(Type value) : enumValue(value)
