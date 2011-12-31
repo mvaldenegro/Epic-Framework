@@ -15,8 +15,8 @@
  * along with Epic Framework.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef IMAGEPROCESSOR_H_
-#define IMAGEPROCESSOR_H_
+#ifndef EPIC_IMAGE_PROCESSING_IMAGEPROCESSOR_H_
+#define EPIC_IMAGE_PROCESSING_IMAGEPROCESSOR_H_
 
 #include <epic.image/FloatImage.h>
 
@@ -36,4 +36,4 @@ namespace Epic {
         } /* namespace Processing */
     } /* namespace Image */
 } /* namespace Epic */
-#endif /* IMAGEPROCESSOR_H_ */
+#endif /* EPIC_IMAGE_PROCESSING_IMAGEPROCESSOR_H_ */
