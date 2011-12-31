@@ -19,6 +19,9 @@ add_library(epic.core SHARED ${epicCoreSources})
 file(GLOB epicImageSources "source/epic.image/*.cpp")
 add_library(epic.image SHARED ${epicImageSources})
 
+file(GLOB epicImageProcessingSources "source/epic.image/processing/*.cpp")
+add_library(epic.image.processing SHARED ${epicImageProcessingSources})
+
 file(GLOB epicOpenCLSources "source/epic.opencl/*.cpp")
 add_library(epic.opencl SHARED ${epicOpenCLSources})
 
@@ -27,5 +30,5 @@ add_library(epic.opengl SHARED ${epicOpenGLSources})
 
 compile_tests("source/epic.math/tests/*.cpp" epic.core)
 compile_tests("source/epic.core/tests/*.cpp" epic.core)
-compile_tests("source/epic.image/tests/*.cpp" "epic.core;epic.image")
+compile_tests("source/epic.image/tests/*.cpp" "epic.core;epic.image;epic.image.processing")
 compile_tests("source/epic.opencl/tests/*.cpp" "epic.core;epic.opencl;OpenCL")
