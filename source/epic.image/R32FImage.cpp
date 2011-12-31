@@ -28,9 +28,7 @@ namespace Epic {
 
         void R32FImage::setPixel(size_t row, size_t column, const PixelF& pixel)
         {
-            float *data = pixelData();
-
-            data[index(row, column)] = pixel.r;
+            setPixel(row, column, pixel.r);
         }
 
         void R32FImage::setPixel(size_t row, size_t column, float r)
