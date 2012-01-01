@@ -25,9 +25,17 @@ namespace Epic {
     namespace Image {
         namespace Processing {
 
+            /*! Common convolution kernels.
+             *
+             */
+
             class Kernel
             {
                 public:
+
+                    /*! Gaussian blur kernel.
+                     *
+                     */
                     template<typename Scalar>
                     static Epic::Math::Matrix<Scalar> gaussian(size_t size, Scalar sigmaSquared)
                     {
