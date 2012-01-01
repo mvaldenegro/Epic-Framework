@@ -16,6 +16,10 @@
  */
 
 #include "FloatImage.h"
+#include "RGBA32FImage.h"
+#include "RGB32FImage.h"
+#include "RG32FImage.h"
+#include "R32FImage.h"
 
 namespace Epic {
     namespace Image {
@@ -30,6 +34,31 @@ namespace Epic {
         FloatImage::~FloatImage()
         {
             delete [] imagePixelData;
+        }
+
+        FloatImage* FloatImage::createFromFormat(size_t width, size_t height, FloatPixelFormat format)
+        {
+            switch(format) {
+                case FloatPixelFormat::RGBA32F: {
+                    return new RGBA32FImage(width, height);
+                }
+
+                case FloatPixelFormat::RGB32F: {
+                    return new RGB32FImage(width, height);
+                }
+
+                case FloatPixelFormat::RG32F: {
+                    return new RG32FImage(width, height);
+                }
+
+                case FloatPixelFormat::R32F: {
+                    return new R32FImage(width, height);
+                }
+
+                default: {
+                    return nullptr;
+                }
+            }
         }
     } /* namespace Image */
 } /* namespace Epic */

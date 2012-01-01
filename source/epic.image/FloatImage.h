@@ -101,6 +101,8 @@ namespace Epic {
                  */
                 virtual void setPixel(size_t row, size_t column, const PixelF& pixel) = 0;
 
+                static FloatImage *createFromFormat(size_t width, size_t height, FloatPixelFormat format);
+
             protected:
                 /*! Sets the image pixel data.
                  */
