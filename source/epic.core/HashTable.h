@@ -19,6 +19,7 @@
 #define EPIC_CORE_HASHTABLE_H_
 
 #include <epic.core/LinkedList.h>
+#include <epic.core/ASCIIString.h>
 
 //template<typename T>
 //size_t hash(const T& e);
@@ -39,7 +40,7 @@ inline size_t hash(unsigned long e) { return static_cast<size_t>(e); }
 inline size_t hash(long long e) { return static_cast<size_t>(e); }
 inline size_t hash(unsigned long long e) { return static_cast<size_t>(e); }
 
-size_t hash(const char *str)
+inline size_t hash(const char *str)
 {
     size_t h = 0;
     int c;
@@ -49,6 +50,11 @@ size_t hash(const char *str)
     }
 
     return h;
+}
+
+inline size_t hash(const Epic::Core::ASCIIString& string)
+{
+    return hash(string.data());
 }
 
 namespace Epic {
