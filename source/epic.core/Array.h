@@ -335,7 +335,7 @@ namespace Epic {
 
                         bool operator!=(const Iterator& other) const
                         {
-                            return (array == other.array) && (index != other.index);
+                            return (array != other.array) || (index != other.index);
                         }
 
                         bool operator<(const Iterator& other) const
@@ -498,7 +498,7 @@ namespace Epic {
 
                         bool operator!=(const ConstIterator& other) const
                         {
-                            return (array == other.array) && (index != other.index);
+                            return (array != other.array) || (index != other.index);
                         }
 
                         bool operator<(const ConstIterator& other) const
