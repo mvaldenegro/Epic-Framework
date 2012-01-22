@@ -18,26 +18,53 @@
 #ifndef EPIC_UTIL_LOGGING_LOGGER_H
 #define	EPIC_UTIL_LOGGING_LOGGER_H
 
-#include <epic.core/String.h>
+#include <epic.core/ASCIIString.h>
+
+#include <epic.util/logging/Appender.h>
 
 namespace Epic {
     namespace Util {
         namespace Logging {
+
             class Logger
             {
                 private:
-                    static Logger *staticRootLogger;
+                    Appender *mAppender;
+                    Epic::Core::ASCIIString mLoggerName;
 
                 public:
+                    Logger();
+                    Logger(const Epic::Core::ASCIIString& name);
+                    Logger(const Logger& logger);
+                    Logger(Logger&& logger);
+                    ~Logger();
 
-                    void debug(Epic::Core::String msg) = 0;
-                    void error(Epic::Core::String msg) = 0;
-                    void warning(Epic::Core::String msg) = 0;
-                    void fatal(Epic::Core::String msg) = 0;
+                    static Logger& getLogger(const Epic::Core::ASCIIString& loggerName);
+
+                    inline Appender *appender() const
+                    {
+                        return mAppender;
+                    }
+
+                    inline void setAppender(Appender *appender)
+                    {
+                        mAppender = appender;
+                    }
+
+                    inline Epic::Core::ASCIIString name() const
+                    {
+                        return mLoggerName;
+                    }
+
+                    void debug(const Epic::Core::ASCIIString &message);
+                    void info(const Epic::Core::ASCIIString &message);
+                    void warning(const Epic::Core::ASCIIString &message);
+                    void error(const Epic::Core::ASCIIString &message);
+                    void fatal(const Epic::Core::ASCIIString &message);
             };
-        };
-    };
-};
+        }
+    }
+}
 
 #endif	/* EPIC_UTIL_LOGGING_LOGGER_H */
 

@@ -32,6 +32,11 @@ namespace Epic {
             {
             }
 
+            Logger::Logger(const Logger& logger)
+            : mAppender(logger.mAppender), mLoggerName(logger.mLoggerName)
+            {
+            }
+
             Logger::Logger(Logger&& logger)
             : mAppender(logger.mAppender), mLoggerName(logger.mLoggerName)
             {
