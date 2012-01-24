@@ -13,7 +13,7 @@ set(CMAKE_CXX_FLAGS "-Wall -g3 -pedantic -Wno-long-long -std=c++0x")
 
 include_directories(source)
 
-file(GLOB epicCoreSources "source/epic.core/*.cpp")
+file(GLOB epicCoreSources "source/epic.core/*.cpp" source/epic.core/*/*.cpp)
 add_library(epic.core SHARED ${epicCoreSources})
 
 file(GLOB epicUtilSources "source/epic.util/*/*.cpp")
@@ -31,8 +31,8 @@ add_library(epic.opencl SHARED ${epicOpenCLSources})
 file(GLOB epicOpenGLSources "source/epic.opengl/*.cpp")
 add_library(epic.opengl SHARED ${epicOpenGLSources})
 
-compile_tests("test/epic.util.logging/*.cpp" "epic.core;epic.util")
-compile_tests("test/epic.math/*.cpp" epic.core)
-compile_tests("test/epic.core/*.cpp" epic.core)
-compile_tests("test/epic.image/*.cpp" "epic.core;epic.image;epic.image.processing")
-compile_tests("test/epic.opencl/*.cpp" "epic.core;epic.opencl;OpenCL")
+compile_tests("test/epic.util.logging/*.cpp" "epic.core;epic.util;pthread")
+compile_tests("test/epic.math/*.cpp" "epic.core;pthread")
+compile_tests("test/epic.core/*.cpp" "epic.core;pthread")
+compile_tests("test/epic.image/*.cpp" "epic.core;epic.image;epic.image.processing;pthread")
+compile_tests("test/epic.opencl/*.cpp" "epic.core;epic.opencl;OpenCL;pthread")
