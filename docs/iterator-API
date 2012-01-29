@@ -1,6 +1,0 @@
-All basic iterators should have:
-
-- operator++, operator++(Iterator i).
-- operator*, operator->
-- operator==, operator!=
-- operator=

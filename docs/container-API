@@ -1,0 +1,16 @@
+All basic containers should have:
+
+- Default constructor, Copy constructor, Move constructor.
+- operator=, operator==, operator!=
+- insert, remove/delete
+- count, contains, isEmpty
+- operator<<
+- at, operator[], operator() (Doing the same as operator[])
+- Iterator API.
+
+All basic iterators should have:
+
+- operator++, operator++(Iterator i).
+- operator*, operator->
+- operator==, operator!=
+- operator=
