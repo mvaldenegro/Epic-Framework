@@ -35,8 +35,8 @@ namespace Epic {
                     return Endian::LittleEndian;
                 }
 
-                inline static Epic::Core::Byte *byteSwap(Epic::Core::Byte *destiny, const Epic::Core::Byte *source,
-                                                         size_t length)
+                inline static void byteSwap(Epic::Core::Byte *destiny, const Epic::Core::Byte *source,
+                                            size_t length)
                 {
                     for(size_t i = 0; i < length; i++) {
                         destiny[i] = source[length - 1 - i];
