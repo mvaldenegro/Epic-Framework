@@ -58,7 +58,14 @@ namespace Epic {
                     return imageHeight;
                 }
 
-                /*! Byte pointer to the pixel data of this image.
+                /*! Floating Point Pixel format of this image.
+                                 */
+                EPIC_INLINE FloatPixelFormat format() const
+                {
+                    return imageFormat;
+                }
+
+                /*! Float pointer to the pixel data of this image.
                  */
                 EPIC_INLINE float *pixelData()
                 {
