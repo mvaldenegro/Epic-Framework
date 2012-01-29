@@ -21,13 +21,15 @@
 #include <epic.core/ASCIIString.h>
 #include <epic.core/Array.h>
 
-#include <epic.image/Image.h>
-#include <epic.image/loader/ImageLoader.h>
-#include <epic.image/loader/ImageWriter.h>
-
 namespace Epic {
     namespace Image {
+
+        class Image;
+
         namespace Loader {
+
+            class ImageReader;
+            class ImageWriter;
 
             class ImageIO
             {
@@ -38,7 +40,7 @@ namespace Epic {
 
                 private:
 
-                    static Epic::Core::Array<ImageLoader *> loaders;
+                    static Epic::Core::Array<ImageReader *> loaders;
                     static Epic::Core::Array<ImageWriter *> writers;
 
                     ImageIO();

@@ -17,11 +17,16 @@
 
 #include "ImageIO.h"
 
+#include <epic.image/Image.h>
+
+#include <epic.image/loader/ImageReader.h>
+#include <epic.image/loader/ImageWriter.h>
+
 namespace Epic {
     namespace Image {
         namespace Loader {
 
-            Epic::Core::Array<ImageLoader *> ImageIO::loaders = Epic::Core::Array<ImageLoader *>();
+            Epic::Core::Array<ImageReader *> ImageIO::loaders = Epic::Core::Array<ImageReader *>();
             Epic::Core::Array<ImageWriter *> ImageIO::writers = Epic::Core::Array<ImageWriter *>();
 
             Image *ImageIO::load(const Epic::Core::ASCIIString& fileName)

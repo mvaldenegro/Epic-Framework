@@ -15,23 +15,32 @@
  * along with Epic Framework.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ImageLoader.h"
+#ifndef IMAGELOADER_H_
+#define IMAGELOADER_H_
+
+#include <epic.core/ASCIIString.h>
+
+#include <epic.image/Image.h>
 
 namespace Epic {
     namespace Image {
         namespace Loader {
 
-            ImageLoader::ImageLoader()
+            class ImageReader
             {
-                // TODO Auto-generated constructor stub
+                public:
+                    ImageReader();
+                    virtual ~ImageReader();
 
-            }
+                    virtual const char *formatName() const = 0;
+                    virtual bool matchHeader(const Epic::Core::ASCIIString& fileName) const = 0;
 
-            ImageLoader::~ImageLoader()
-            {
-                // TODO Auto-generated destructor stub
-            }
+                    virtual Epic::Image::Image *read(const Epic::Core::ASCIIString& fileName) const = 0;
+
+
+            };
 
         } /* namespace Loader */
     } /* namespace Image */
 } /* namespace Epic */
+#endif /* IMAGELOADER_H_ */
